@@ -1,0 +1,56 @@
+{
+  "project_info": {
+    "project_id": "freely-461l",
+    "project_number": "292287318292",
+    "name": "Freely"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:292287318292:android:3357017d2e277beb",
+        "client_id": "android:com.utaustin.freely",
+        "client_type": 1,
+        "android_client_info": {
+          "package_name": "com.utaustin.freely",
+          "certificate_hash": []
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "292287318292-78vkt13bcfdk15jta0cb9cpt2usns7ev.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.utaustin.freely",
+            "certificate_hash": "FDD2CA7946B9BCEFCB53307A3974EAB18EADDA59"
+          }
+        },
+        {
+          "client_id": "292287318292-49ifkmri2u33g87ijdfa7nacbcpsuo58.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "cloud_messaging_service": {
+          "status": 1,
+          "apns_config": []
+        },
+        "appinvite_service": {
+          "status": 1,
+          "other_platform_oauth_client": []
+        },
+        "google_signin_service": {
+          "status": 2
+        },
+        "ads_service": {
+          "status": 1
+        }
+      }
+    }
+  ],
+  "client_info": [],
+  "ARTIFACT_VERSION": "1"
+}
