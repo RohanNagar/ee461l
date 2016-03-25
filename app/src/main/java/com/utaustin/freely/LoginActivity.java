@@ -39,15 +39,6 @@ public class LoginActivity extends AppCompatActivity implements GoogleApiClient.
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
-        FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
-        fab.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-                        .setAction("Action", null).show();
-            }
-        });
-
         // Configure sign-in to request the user's ID, email address, and basic
         // profile. ID and basic profile are included in DEFAULT_SIGN_IN.
         GoogleSignInOptions gso = new GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
@@ -155,17 +146,22 @@ public class LoginActivity extends AppCompatActivity implements GoogleApiClient.
     }
 
     private void handleSignInResult(GoogleSignInResult result) {
+        Intent intent = new Intent(this, MeetingsActivity.class);
+
+        startActivity(intent);
+        finish();
+
         Log.d("sup", "handleSignInResult:" + result.isSuccess());
-        if (result.isSuccess()) {
-            // Signed in successfully, show authenticated UI.
-            GoogleSignInAccount acct = result.getSignInAccount();
-            //mStatusTextView.setText(getString(R.string.signed_in_fmt, acct.getDisplayName()));
-            //updateUI(true);
-            Intent intent = new Intent(this, MeetingsActivity.class);
-            startActivity(intent);
-        } else {
-            // Signed out, show unauthenticated UI.
-            //updateUI(false);
-        }
+//        if (result.isSuccess()) {
+//            // Signed in successfully, show authenticated UI.
+//            GoogleSignInAccount acct = result.getSignInAccount();
+//            //mStatusTextView.setText(getString(R.string.signed_in_fmt, acct.getDisplayName()));
+//            //updateUI(true);
+//            Intent intent = new Intent(this, MeetingsActivity.class);
+//            startActivity(intent);
+//        } else {
+//            // Signed out, show unauthenticated UI.
+//            //updateUI(false);
+//        }
     }
 }
