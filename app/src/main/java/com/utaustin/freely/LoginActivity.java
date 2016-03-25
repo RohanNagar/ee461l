@@ -73,8 +73,6 @@ public class LoginActivity extends AppCompatActivity implements GoogleApiClient.
         signInButton.setScopes(gso.getScopeArray());
 
         findViewById(R.id.sign_in_button).setOnClickListener(this);
-
-
     }
 
     @Override
