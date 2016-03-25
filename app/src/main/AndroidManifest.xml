@@ -31,11 +31,12 @@
             android:label="@string/title_activity_meetings"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
-            android:name=".CreateGroupActivity"
-            android:label="@string/title_activity_create_group"
-            >
-
-        </activity>
+            android:name=".CreateMeetingActivity"
+            android:label="@string/title_activity_create_group"></activity>
+        <activity
+            android:name=".CreateMeetingChooseTimeActivity"
+            android:label="@string/title_activity_create_meeting_choose_time"
+            android:theme="@style/AppTheme.NoActionBar"></activity>
     </application>
 
 </manifest>
