@@ -2,7 +2,7 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     >
-    <item android:id="@+id/new_game"
+    <item android:id="@+id/menu_create_group_next"
         android:icon="@drawable/ic_arrow_forward_white_24dp"
         android:title="@string/next"
         app:showAsAction="always"
