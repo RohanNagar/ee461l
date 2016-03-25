@@ -30,7 +30,12 @@
             android:name=".MeetingsActivity"
             android:label="@string/title_activity_meetings"
             android:theme="@style/AppTheme.NoActionBar" />
-        <activity android:name=".CreateGroupActivity"></activity>
+        <activity
+            android:name=".CreateGroupActivity"
+            android:label="@string/title_activity_create_group"
+            >
+
+        </activity>
     </application>
 
 </manifest>

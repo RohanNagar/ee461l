@@ -1,5 +1,7 @@
 <resources>
     <string name="app_name">Freely</string>
     <string name="title_activity_login">Login</string>
-    <string name="title_activity_meetings">MeetingsActivity</string>
+    <string name="title_activity_meetings">Sessions</string>
+    <string name="title_activity_create_group">Choose People</string>
+    <string name="next">Next</string>
 </resources>
