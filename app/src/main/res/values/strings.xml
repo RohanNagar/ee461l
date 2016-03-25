@@ -4,6 +4,6 @@
     <string name="title_activity_meetings">@string/app_name</string>
     <string name="title_activity_create_group">Choose People</string>
     <string name="next">Next</string>
-    <string name="title_activity_create_meeting_choose_time">CreateMeetingChooseTimeActivity
-    </string>
+    <string name="finish">Finish</string>
+    <string name="title_activity_create_meeting_choose_time">Choose Time</string>
 </resources>

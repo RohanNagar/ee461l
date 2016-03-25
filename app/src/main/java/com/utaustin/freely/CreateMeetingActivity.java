@@ -22,7 +22,7 @@ public class CreateMeetingActivity extends AppCompatActivity {
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         MenuInflater inflater = getMenuInflater();
-        inflater.inflate(R.menu.create_group_menu, menu);
+        inflater.inflate(R.menu.create_meeting_menu, menu);
 
         return true;
     }
