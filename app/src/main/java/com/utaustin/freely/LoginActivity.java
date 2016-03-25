@@ -61,6 +61,7 @@ public class LoginActivity extends AppCompatActivity implements GoogleApiClient.
                 .addApi(Auth.GOOGLE_SIGN_IN_API, gso)
                 .build();
 
+        FreelyApplication.mGoogleApiClient = this.mGoogleApiClient;
         // Customize sign-in button. The sign-in button can be displayed in
         // multiple sizes and color schemes. It can also be contextually
         // rendered based on the requested scopes. For example. a red button may
@@ -85,7 +86,7 @@ public class LoginActivity extends AppCompatActivity implements GoogleApiClient.
         if (opr.isDone()) {
             // If the user's cached credentials are valid, the OptionalPendingResult will be "done"
             // and the GoogleSignInResult will be available instantly.
-            //Log.d(TAG, "Got cached sign-in");
+            Log.d("login activity", "Got cached sign-in");
             GoogleSignInResult result = opr.get();
             handleSignInResult(result);
         } else {

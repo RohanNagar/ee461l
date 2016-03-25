@@ -51,18 +51,20 @@ public class MeetingsActivity extends AppCompatActivity implements GoogleApiClie
             }
         });
 
-        // Configure sign-in to request the user's ID, email address, and basic
-        // profile. ID and basic profile are included in DEFAULT_SIGN_IN.
-        GoogleSignInOptions gso = new GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
-                .requestEmail()
-                .build();
+//        // Configure sign-in to request the user's ID, email address, and basic
+//        // profile. ID and basic profile are included in DEFAULT_SIGN_IN.
+//        GoogleSignInOptions gso = new GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
+//                .requestEmail()
+//                .build();
+//
+//        // Build a GoogleApiClient with access to the Google Sign-In API and the
+//        // options specified by gso.
+//        mGoogleApiClient = new GoogleApiClient.Builder(this)
+//                .enableAutoManage(this /* FragmentActivity */, this /* OnConnectionFailedListener */)
+//                .addApi(Auth.GOOGLE_SIGN_IN_API, gso)
+//                .build();
 
-        // Build a GoogleApiClient with access to the Google Sign-In API and the
-        // options specified by gso.
-        mGoogleApiClient = new GoogleApiClient.Builder(this)
-                .enableAutoManage(this /* FragmentActivity */, this /* OnConnectionFailedListener */)
-                .addApi(Auth.GOOGLE_SIGN_IN_API, gso)
-                .build();
+        this.mGoogleApiClient = FreelyApplication.mGoogleApiClient;
     }
 
     @Override
@@ -76,18 +78,29 @@ public class MeetingsActivity extends AppCompatActivity implements GoogleApiClie
     private void signOut() {
         Auth.GoogleSignInApi.signOut(mGoogleApiClient).setResultCallback(
             new ResultCallback<Status>() {
+
                 @Override
                 public void onResult(Status status) {
                     // [START_EXCLUDE]
                     //updateUI(false);
                     // [END_EXCLUDE]
+                    if(status.isSuccess()) {
+                        goToLoginActivity();
+                    }
                 }
             });
 
         Log.d("LOGOUT", "we did that shit");
-
     }
 
-    public void onClick(View v) { signOut(); }
+    public void goToLoginActivity() {
+        Intent intent = new Intent(this, LoginActivity.class);
+        startActivity(intent);
+    }
+
+    public void onClick(View v) {
+        signOut();
+
+    }
 
 }
