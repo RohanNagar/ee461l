@@ -6,6 +6,9 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import com.google.android.gms.common.api.Status;
 
@@ -22,7 +25,7 @@ import com.utaustin.freely.adapters.MeetingsAdapter;
 
 import java.util.ArrayList;
 
-public class MeetingsActivity extends AppCompatActivity implements GoogleApiClient.OnConnectionFailedListener, View.OnClickListener {
+public class MeetingsActivity extends AppCompatActivity implements GoogleApiClient.OnConnectionFailedListener{
 
     private GoogleApiClient mGoogleApiClient;
 
@@ -104,6 +107,35 @@ public class MeetingsActivity extends AppCompatActivity implements GoogleApiClie
 
     }
 
-    public void onClick(View v) { signOut(); }
+//    public void onClick(View v) { signOut(); }
 
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        MenuInflater inflater = getMenuInflater();
+        inflater.inflate(R.menu.meetings_activity_menu, menu);
+
+        return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        // Handle item selection
+        switch (item.getItemId()) {
+            case R.id.menu_sign_out:
+                //do sign out
+
+
+                //go back to sign in
+                Intent intent = new Intent(this, LoginActivity.class);
+
+                startActivity(intent);
+                finish(); //prevent user from returning
+                return true;
+            case android.R.id.home:
+                finish();
+                return true;
+            default:
+                return super.onOptionsItemSelected(item);
+        }
+    }
 }
