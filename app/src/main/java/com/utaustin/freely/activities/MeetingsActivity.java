@@ -46,7 +46,7 @@ public class MeetingsActivity extends AppCompatActivity implements GoogleApiClie
 
 
         Server.init(getApplicationContext());
-        Server.getMeeting("session id!", new Response.Listener<String>() {
+        Server.getMeetings("the email", new Response.Listener<String>() {
             @Override
             public void onResponse(String response) {
                 Log.d("freely", response);

@@ -95,4 +95,12 @@ public class Server {
 
         Server.get("/meeting", params, responseListener, errorListener);
     }
+
+    public static void getMeetings(String email, Response.Listener<String> responseListener, Response.ErrorListener errorListener){
+        Map<String, String> params = new HashMap<String, String>();
+
+        params.put("email", email);
+
+        Server.get("/meetings", params, responseListener, errorListener);
+    }
 }
