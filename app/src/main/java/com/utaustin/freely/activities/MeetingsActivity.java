@@ -44,7 +44,6 @@ public class MeetingsActivity extends AppCompatActivity implements GoogleApiClie
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
-
         Server.init(getApplicationContext());
 
         FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
