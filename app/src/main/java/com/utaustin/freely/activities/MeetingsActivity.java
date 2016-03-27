@@ -10,6 +10,9 @@ import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
+
+import com.android.volley.Response;
+import com.android.volley.VolleyError;
 import com.google.android.gms.common.api.Status;
 
 import android.content.Intent;
@@ -21,6 +24,7 @@ import com.google.android.gms.common.ConnectionResult;
 import com.google.android.gms.common.api.GoogleApiClient;
 import com.google.android.gms.common.api.ResultCallback;
 import com.utaustin.freely.R;
+import com.utaustin.freely.Server;
 import com.utaustin.freely.adapters.MeetingsAdapter;
 
 import java.util.ArrayList;
@@ -39,6 +43,22 @@ public class MeetingsActivity extends AppCompatActivity implements GoogleApiClie
         setContentView(R.layout.activity_meetings);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
+
+        ArrayList<String> emails = new ArrayList<>();
+        emails.add("some email");
+
+        Server.init(getApplicationContext());
+        Server.createMeeting(emails, "gcm token", "calendar token", "begintime", "endtime", 2, new Response.Listener<String>() {
+            @Override
+            public void onResponse(String response) {
+                Log.d("freely", response);
+            }
+        }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+                Log.d("freely", error.toString());
+            }
+        });
 
         FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {
