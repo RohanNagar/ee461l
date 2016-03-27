@@ -103,4 +103,23 @@ public class Server {
 
         Server.get("/meetings", params, responseListener, errorListener);
     }
+
+    public static void getFreeTimes(String sessionId, Response.Listener<String> responseListener, Response.ErrorListener errorListener){
+        Map<String, String> params = new HashMap<String, String>();
+
+        params.put("session_id", sessionId);
+
+        Server.get("/free-times", params, responseListener, errorListener);
+    }
+
+    public static void selectMeetingTime(String sessionId, String beginTime, String endTime, Response.Listener<String> responseListener, Response.ErrorListener errorListener) {
+        Map<String, String> params = new HashMap<String, String>();
+
+        params.put("session_id", sessionId);
+        params.put("begin_time", beginTime);
+        params.put("end_time", endTime);
+
+        Server.post("/select-time", params, responseListener, errorListener);
+    }
+
 }

@@ -46,17 +46,6 @@ public class MeetingsActivity extends AppCompatActivity implements GoogleApiClie
 
 
         Server.init(getApplicationContext());
-        Server.getMeetings("the email", new Response.Listener<String>() {
-            @Override
-            public void onResponse(String response) {
-                Log.d("freely", response);
-            }
-        }, new Response.ErrorListener() {
-            @Override
-            public void onErrorResponse(VolleyError error) {
-                Log.d("freely", error.toString());
-            }
-        });
 
         FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {
