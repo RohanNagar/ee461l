@@ -25,7 +25,7 @@ public class CreateMeetingActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_create_meeting);
 
-        //Enable back button in action bar
+        // Enable back button in action bar
         getSupportActionBar().setHomeButtonEnabled(true);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
@@ -42,8 +42,8 @@ public class CreateMeetingActivity extends AppCompatActivity {
         // specify an adapter (see also next example)
         ArrayList<String> names = new ArrayList<>();
 
-        for(int i = 0;i<10;i++){
-            names.add("Meiru Che "+i);
+        for(int i = 0; i<10; i++){
+            names.add("Meiru Che " + i);
         }
 
         mAdapter = new ChoosePeopleAdapter(names);
