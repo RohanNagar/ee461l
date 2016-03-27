@@ -1,4 +1,4 @@
-package com.utaustin.freely;
+package com.utaustin.freely.activities;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -7,6 +7,8 @@ import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
+
+import com.utaustin.freely.R;
 
 public class CreateMeetingChooseTimeActivity extends AppCompatActivity {
 

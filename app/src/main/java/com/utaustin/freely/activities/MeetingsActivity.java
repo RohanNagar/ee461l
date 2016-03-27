@@ -1,4 +1,4 @@
-package com.utaustin.freely;
+package com.utaustin.freely.activities;
 
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
@@ -17,6 +17,7 @@ import com.google.android.gms.auth.api.signin.GoogleSignInOptions;
 import com.google.android.gms.common.ConnectionResult;
 import com.google.android.gms.common.api.GoogleApiClient;
 import com.google.android.gms.common.api.ResultCallback;
+import com.utaustin.freely.R;
 import com.utaustin.freely.adapters.MeetingsAdapter;
 
 import java.util.ArrayList;

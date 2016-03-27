@@ -9,7 +9,7 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity
-            android:name=".LoginActivity"
+            android:name=".activities.LoginActivity"
             android:label="@string/title_activity_login"
             android:theme="@style/AppTheme.NoActionBar">
             <intent-filter android:label="Freely">
@@ -27,14 +27,14 @@
             android:value="@integer/google_play_services_version" />
 
         <activity
-            android:name=".MeetingsActivity"
+            android:name=".activities.MeetingsActivity"
             android:label="@string/title_activity_meetings"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
-            android:name=".CreateMeetingActivity"
+            android:name=".activities.CreateMeetingActivity"
             android:label="@string/title_activity_create_group"></activity>
         <activity
-            android:name=".CreateMeetingChooseTimeActivity"
+            android:name=".activities.CreateMeetingChooseTimeActivity"
             android:label="@string/title_activity_create_meeting_choose_time"
             android:theme="@style/AppTheme.NoActionBar"></activity>
     </application>

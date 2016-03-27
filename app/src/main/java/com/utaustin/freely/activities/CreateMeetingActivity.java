@@ -1,4 +1,4 @@
-package com.utaustin.freely;
+package com.utaustin.freely.activities;
 
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
@@ -9,8 +9,8 @@ import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 
+import com.utaustin.freely.R;
 import com.utaustin.freely.adapters.ChoosePeopleAdapter;
-import com.utaustin.freely.adapters.MeetingsAdapter;
 
 import java.util.ArrayList;
 
