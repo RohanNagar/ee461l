@@ -60,7 +60,7 @@ public class Server {
             paramString.append(key+"="+ Uri.encode(value));
         }
 
-        reqURL = url + "/" + endpoint + paramString.toString();
+        reqURL = url + endpoint + paramString.toString();
 
         StringRequest sr = new StringRequest(Request.Method.GET, reqURL, responseListener, errorListener);
 
@@ -70,8 +70,15 @@ public class Server {
 
     public static void createMeeting(ArrayList<String> emails, String gcmToken, String calendarToken, String beginTime, String endTime, int duration, Response.Listener<String> responseListener, Response.ErrorListener errorListener) {
         Map<String, String> params = new HashMap<String, String>();
+        String emailsFormatted = "[";
 
-        params.put("emails", emails.toString());
+        for(int i = 0;i<emails.size();i++){
+            emailsFormatted+="\""+emails.get(i)+"\"";
+        }
+
+        emailsFormatted+="]";
+
+        params.put("emails", emailsFormatted);
         params.put("gcm", gcmToken);
         params.put("calendar_token", calendarToken);
         params.put("begin_time", beginTime);
@@ -79,5 +86,13 @@ public class Server {
         params.put("duration", Integer.toString(duration));
 
         Server.post("/meeting", params, responseListener, errorListener);
+    }
+
+    public static void getMeeting(String sessionId, Response.Listener<String> responseListener, Response.ErrorListener errorListener){
+        Map<String, String> params = new HashMap<String, String>();
+
+        params.put("session_id", sessionId);
+
+        Server.get("/meeting", params, responseListener, errorListener);
     }
 }

@@ -44,11 +44,9 @@ public class MeetingsActivity extends AppCompatActivity implements GoogleApiClie
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
-        ArrayList<String> emails = new ArrayList<>();
-        emails.add("some email");
 
         Server.init(getApplicationContext());
-        Server.createMeeting(emails, "gcm token", "calendar token", "begintime", "endtime", 2, new Response.Listener<String>() {
+        Server.getMeeting("session id!", new Response.Listener<String>() {
             @Override
             public void onResponse(String response) {
                 Log.d("freely", response);
