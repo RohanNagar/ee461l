@@ -83,7 +83,7 @@ public class MeetingsActivity extends AppCompatActivity implements GoogleApiClie
         ArrayList<String> names = new ArrayList<>();
 
         for(int i = 0;i<10;i++){
-            names.add("Meiru Che "+i);
+            names.add("Meiru Che Meeting "+i);
         }
 
         mAdapter = new MeetingsAdapter(names);
