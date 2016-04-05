@@ -101,7 +101,11 @@ public class MeetingsActivity extends AppCompatActivity implements
             new ResultCallback<Status>() {
                 @Override
                 public void onResult(Status status) {
-                    // Do something
+                    if (status.isSuccess()) {
+                        Log.d("signOut", "true");
+                    } else {
+                        Log.d("signOut", "false");
+                    }
                 }
             });
 
