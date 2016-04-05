@@ -11,8 +11,6 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 
-import com.android.volley.Response;
-import com.android.volley.VolleyError;
 import com.google.android.gms.common.api.Status;
 
 import android.content.Intent;
@@ -29,7 +27,8 @@ import com.utaustin.freely.adapters.MeetingsAdapter;
 
 import java.util.ArrayList;
 
-public class MeetingsActivity extends AppCompatActivity implements GoogleApiClient.OnConnectionFailedListener{
+public class MeetingsActivity extends AppCompatActivity implements
+        GoogleApiClient.OnConnectionFailedListener {
 
     private GoogleApiClient mGoogleApiClient;
 
@@ -96,26 +95,25 @@ public class MeetingsActivity extends AppCompatActivity implements GoogleApiClie
     public void onConnectionFailed(ConnectionResult connectionResult) {
         // An unresolvable error has occurred and Google APIs (including Sign-In) will not
         // be available.
-        //Log.d(TAG, "onConnectionFailed:" + connectionResult);
+        Log.d("connection", "onConnectionFailed:" + connectionResult);
     }
 
-    // [START signOut]
     private void signOut() {
         Auth.GoogleSignInApi.signOut(mGoogleApiClient).setResultCallback(
             new ResultCallback<Status>() {
                 @Override
                 public void onResult(Status status) {
-                    // [START_EXCLUDE]
-                    //updateUI(false);
-                    // [END_EXCLUDE]
+                    if (status.isSuccess()) {
+                        Log.d("signOut", "true");
+                    } else {
+                        Log.d("signOut", "false");
+                    }
                 }
             });
 
         Log.d("LOGOUT", "we did that shit");
 
     }
-
-//    public void onClick(View v) { signOut(); }
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
@@ -130,14 +128,14 @@ public class MeetingsActivity extends AppCompatActivity implements GoogleApiClie
         // Handle item selection
         switch (item.getItemId()) {
             case R.id.menu_sign_out:
-                //do sign out
+                // Do sign out
+                signOut();
 
-
-                //go back to sign in
+                // Go back to sign in
                 Intent intent = new Intent(this, LoginActivity.class);
 
                 startActivity(intent);
-                finish(); //prevent user from returning
+                finish(); // prevent user from returning
                 return true;
             case android.R.id.home:
                 finish();

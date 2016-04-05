@@ -33,7 +33,7 @@ public class Server {
 
             @Override
             public Map<String, String> getHeaders() throws AuthFailureError {
-                Map<String, String> params = new HashMap<String, String>();
+                Map<String, String> params = new HashMap<>();
                 params.put("Content-Type", "application/x-www-form-urlencoded");
                 return params;
             }
@@ -57,7 +57,7 @@ public class Server {
                 paramString.append("&");
             }
 
-            paramString.append(key+"="+ Uri.encode(value));
+            paramString.append(key + "=" + Uri.encode(value));
         }
 
         reqURL = url + endpoint + paramString.toString();
@@ -69,14 +69,14 @@ public class Server {
     }
 
     public static void createMeeting(ArrayList<String> emails, String gcmToken, String calendarToken, String beginTime, String endTime, int duration, Response.Listener<String> responseListener, Response.ErrorListener errorListener) {
-        Map<String, String> params = new HashMap<String, String>();
+        Map<String, String> params = new HashMap<>();
         String emailsFormatted = "[";
 
-        for(int i = 0;i<emails.size();i++){
-            emailsFormatted+="\""+emails.get(i)+"\"";
+        for(int i = 0; i<emails.size(); i++){
+            emailsFormatted += "\"" + emails.get(i) + "\"";
         }
 
-        emailsFormatted+="]";
+        emailsFormatted += "]";
 
         params.put("emails", emailsFormatted);
         params.put("gcm", gcmToken);
@@ -89,7 +89,7 @@ public class Server {
     }
 
     public static void getMeeting(String sessionId, Response.Listener<String> responseListener, Response.ErrorListener errorListener){
-        Map<String, String> params = new HashMap<String, String>();
+        Map<String, String> params = new HashMap<>();
 
         params.put("session_id", sessionId);
 
@@ -97,7 +97,7 @@ public class Server {
     }
 
     public static void getMeetings(String email, Response.Listener<String> responseListener, Response.ErrorListener errorListener){
-        Map<String, String> params = new HashMap<String, String>();
+        Map<String, String> params = new HashMap<>();
 
         params.put("email", email);
 
@@ -105,7 +105,7 @@ public class Server {
     }
 
     public static void getFreeTimes(String sessionId, Response.Listener<String> responseListener, Response.ErrorListener errorListener){
-        Map<String, String> params = new HashMap<String, String>();
+        Map<String, String> params = new HashMap<>();
 
         params.put("session_id", sessionId);
 
@@ -113,7 +113,7 @@ public class Server {
     }
 
     public static void selectMeetingTime(String sessionId, String beginTime, String endTime, Response.Listener<String> responseListener, Response.ErrorListener errorListener) {
-        Map<String, String> params = new HashMap<String, String>();
+        Map<String, String> params = new HashMap<>();
 
         params.put("session_id", sessionId);
         params.put("begin_time", beginTime);
