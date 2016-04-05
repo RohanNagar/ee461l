@@ -13,6 +13,7 @@ import android.widget.Button;
 import android.widget.EditText;
 
 import com.utaustin.freely.R;
+import com.utaustin.freely.fragments.DatePickerFragment;
 import com.utaustin.freely.fragments.TimePickerFragment;
 
 public class CreateMeetingChooseTimeActivity extends AppCompatActivity {
@@ -41,8 +42,11 @@ public class CreateMeetingChooseTimeActivity extends AppCompatActivity {
         beginTimePickerButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                DialogFragment newFragment = new TimePickerFragment();
-                newFragment.show(fragmentManager, "timePicker");
+//                DialogFragment newFragment = new TimePickerFragment();
+//                newFragment.show(fragmentManager, "timePicker");
+
+                DialogFragment newFragment = new DatePickerFragment();
+                newFragment.show(fragmentManager, "datePicker");
             }
         });
     }
