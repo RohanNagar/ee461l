@@ -12,4 +12,11 @@
     tools:context=".activities.CreateMeetingChooseTimeActivity"
     tools:showIn="@layout/activity_create_meeting_choose_time">
 
+    <EditText
+        android:id="@+id/activity_create_meeting_choose_time_name"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="@string/meeting_name"
+        />
+
 </RelativeLayout>

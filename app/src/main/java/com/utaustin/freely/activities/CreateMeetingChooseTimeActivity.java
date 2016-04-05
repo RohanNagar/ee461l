@@ -7,10 +7,13 @@ import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
+import android.widget.EditText;
 
 import com.utaustin.freely.R;
 
 public class CreateMeetingChooseTimeActivity extends AppCompatActivity {
+
+    EditText nameText;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -22,6 +25,8 @@ public class CreateMeetingChooseTimeActivity extends AppCompatActivity {
         //Enable back button in action bar
         getSupportActionBar().setHomeButtonEnabled(true);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+
+        nameText = (EditText) findViewById(R.id.activity_create_meeting_choose_time_name);
     }
 
     @Override

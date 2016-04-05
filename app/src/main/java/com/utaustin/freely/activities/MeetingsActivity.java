@@ -82,9 +82,11 @@ public class MeetingsActivity extends AppCompatActivity implements GoogleApiClie
         // specify an adapter (see also next example)
         ArrayList<String> names = new ArrayList<>();
 
-        for(int i = 0;i<10;i++){
-            names.add("Meiru Che Meeting "+i);
-        }
+        names.add("Interview");
+        names.add("Kayaking");
+        names.add("Student meeting");
+        names.add("461L group meeting");
+        names.add("Senior design meeting");
 
         mAdapter = new MeetingsAdapter(names);
         mRecyclerView.setAdapter(mAdapter);
