@@ -24,6 +24,7 @@ import com.google.android.gms.common.api.ResultCallback;
 import com.utaustin.freely.R;
 import com.utaustin.freely.Server;
 import com.utaustin.freely.adapters.MeetingsAdapter;
+import com.utaustin.freely.data.SessionData;
 
 import java.util.ArrayList;
 
@@ -79,13 +80,15 @@ public class MeetingsActivity extends AppCompatActivity implements
         mRecyclerView.setLayoutManager(mLayoutManager);
 
         // specify an adapter (see also next example)
-        ArrayList<String> names = new ArrayList<>();
+        ArrayList<SessionData> names = new ArrayList<>();
 
-        names.add("Interview");
-        names.add("Kayaking");
-        names.add("Student meeting");
-        names.add("461L group meeting");
-        names.add("Senior design meeting");
+
+
+        names.add(new SessionData("Interview", ""));
+        names.add(new SessionData("Kayaking", ""));
+        names.add(new SessionData("Student meeting", ""));
+        names.add(new SessionData("461L group meeting", ""));
+        names.add(new SessionData("Senior design meeting", ""));
 
         mAdapter = new MeetingsAdapter(names);
         mRecyclerView.setAdapter(mAdapter);

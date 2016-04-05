@@ -7,11 +7,12 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import com.utaustin.freely.R;
+import com.utaustin.freely.data.SessionData;
 
 import java.util.ArrayList;
 
 public class MeetingsAdapter extends RecyclerView.Adapter<MeetingsAdapter.ViewHolder> {
-    private ArrayList<String> mDataset;
+    private ArrayList<SessionData> mDataset;
 
     // Provide a reference to the views for each data item
     // Complex data items may need more than one view per item, and
@@ -27,7 +28,7 @@ public class MeetingsAdapter extends RecyclerView.Adapter<MeetingsAdapter.ViewHo
     }
 
     // Provide a suitable constructor (depends on the kind of dataset)
-    public MeetingsAdapter(ArrayList<String> myDataset) {
+    public MeetingsAdapter(ArrayList<SessionData> myDataset) {
         mDataset = myDataset;
     }
 
@@ -49,7 +50,7 @@ public class MeetingsAdapter extends RecyclerView.Adapter<MeetingsAdapter.ViewHo
     public void onBindViewHolder(ViewHolder holder, int position) {
         // - get element from your dataset at this position
         // - replace the contents of the view with that element
-        holder.mTextView.setText(mDataset.get(position));
+        holder.mTextView.setText(mDataset.get(position).getName());
 
     }
 
