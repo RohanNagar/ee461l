@@ -19,4 +19,10 @@
         android:hint="@string/meeting_name"
         />
 
+    <Button
+        android:id="@+id/create_meeting_choose_activity_open_begin_picker"
+        android:text="Open picker"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+
 </RelativeLayout>
