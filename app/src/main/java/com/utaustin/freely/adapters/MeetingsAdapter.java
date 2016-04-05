@@ -1,12 +1,15 @@
 package com.utaustin.freely.adapters;
 
+import android.content.Intent;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
 import com.utaustin.freely.R;
+import com.utaustin.freely.activities.StatusActivity;
 import com.utaustin.freely.data.SessionData;
 
 import java.util.ArrayList;
@@ -52,6 +55,12 @@ public class MeetingsAdapter extends RecyclerView.Adapter<MeetingsAdapter.ViewHo
         // - replace the contents of the view with that element
         holder.mTextView.setText(mDataset.get(position).getName());
 
+        holder.itemView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Log.d("item", "clicked");
+            }
+        });
     }
 
     // Return the size of your dataset (invoked by the layout manager)
