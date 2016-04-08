@@ -16,6 +16,8 @@ import com.google.android.gms.common.SignInButton;
 import com.google.android.gms.common.api.GoogleApiClient;
 import com.google.android.gms.common.api.OptionalPendingResult;
 import com.google.android.gms.common.api.ResultCallback;
+import com.google.android.gms.common.api.Scope;
+import com.google.api.services.calendar.CalendarScopes;
 import com.utaustin.freely.R;
 
 public class LoginActivity extends AppCompatActivity implements
@@ -23,6 +25,8 @@ public class LoginActivity extends AppCompatActivity implements
         View.OnClickListener {
 
     private static final int RC_SIGN_IN = 9001;
+    private static final String serverClientId
+            = "292287318292-49ifkmri2u33g87ijdfa7nacbcpsuo58.apps.googleusercontent.com";
 
     private GoogleApiClient mGoogleApiClient;
 
@@ -37,7 +41,9 @@ public class LoginActivity extends AppCompatActivity implements
         // profile. ID and basic profile are included in DEFAULT_SIGN_IN.
         GoogleSignInOptions gso = new GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
                 .requestEmail()
-                .requestIdToken("292287318292-49ifkmri2u33g87ijdfa7nacbcpsuo58.apps.googleusercontent.com")
+                .requestIdToken(serverClientId)
+                .requestServerAuthCode(serverClientId, false)
+                .requestScopes(new Scope(CalendarScopes.CALENDAR)) // not sure if this is right
                 .build();
 
         // Build a GoogleApiClient with access to the Google Sign-In API and the
@@ -116,6 +122,11 @@ public class LoginActivity extends AppCompatActivity implements
             // Signed in successfully
             GoogleSignInAccount acct = result.getSignInAccount();
             Log.d("signIn", "name:" + acct.getDisplayName());
+
+            // Get auth code
+            String authCode = acct.getServerAuthCode();
+            Log.d("signIn", "authCode:" + authCode);
+            // TODO: send auth code to backend
 
             // Go to MeetingsActivity
             Intent intent = new Intent(this, MeetingsActivity.class);

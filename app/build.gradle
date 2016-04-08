@@ -27,6 +27,7 @@ dependencies {
     compile 'com.android.support:design:23.1.1'
     compile 'com.google.android.gms:play-services-auth:8.3.0'
     compile 'com.google.android.gms:play-services-appindexing:8.3.0'
+    compile 'com.google.apis:google-api-services-calendar:v3-rev87-1.19.0' exclude module: 'httpclient'
     compile 'com.android.volley:volley:1.0.0'
     //compile 'com.google.android.gms:play-services:4.4.52'
 }
