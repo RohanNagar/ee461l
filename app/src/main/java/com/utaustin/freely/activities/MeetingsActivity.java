@@ -90,7 +90,7 @@ public class MeetingsActivity extends AppCompatActivity implements
         names.add(new SessionData("461L group meeting", ""));
         names.add(new SessionData("Senior design meeting", ""));
 
-        mAdapter = new MeetingsAdapter(names);
+        mAdapter = new MeetingsAdapter(names, getApplicationContext());
         mRecyclerView.setAdapter(mAdapter);
     }
 

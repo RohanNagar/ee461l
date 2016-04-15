@@ -41,6 +41,10 @@
             android:label="@string/title_activity_create_meeting_choose_time"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".activities.StatusActivity"
+            android:label="Selected Meeting"
+            android:screenOrientation="portrait" />
     </application>
 
 </manifest>
