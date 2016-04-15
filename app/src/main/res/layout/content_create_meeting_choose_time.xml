@@ -19,10 +19,25 @@
         android:hint="@string/meeting_name"
         />
 
+    <TextView
+        android:id="@+id/activity_create_meeting_date_text_view"
+        android:text="Choose a Date:"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/activity_create_meeting_choose_time_name" />
+
     <Button
         android:id="@+id/create_meeting_choose_activity_open_begin_picker"
-        android:text="Open picker"
+        android:text="Open Picker"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content" />
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/activity_create_meeting_date_text_view" />
+
+    <TextView
+        android:id="@+id/create_meeting_choose_start_date_text_view"
+        android:text="Placeholder"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_toRightOf="@+id/create_meeting_choose_activity_open_begin_picker" />
 
 </RelativeLayout>
