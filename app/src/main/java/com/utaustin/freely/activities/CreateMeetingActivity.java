@@ -19,6 +19,7 @@ public class CreateMeetingActivity extends AppCompatActivity {
     private RecyclerView mRecyclerView;
     private RecyclerView.Adapter mAdapter;
     private RecyclerView.LayoutManager mLayoutManager;
+    private ArrayList<String> names;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -40,7 +41,7 @@ public class CreateMeetingActivity extends AppCompatActivity {
         mRecyclerView.setLayoutManager(mLayoutManager);
 
         // specify an adapter (see also next example)
-        ArrayList<String> names = new ArrayList<>();
+        names = new ArrayList<>();
 
         for(int i = 0; i<10; i++){
             names.add("Meiru Che " + i);
@@ -64,7 +65,9 @@ public class CreateMeetingActivity extends AppCompatActivity {
         switch (item.getItemId()) {
             case R.id.menu_create_group_next:
                 Intent intent = new Intent(this, CreateMeetingChooseTimeActivity.class);
-
+                Bundle bundle = new Bundle();
+                bundle.putStringArrayList("names", names);
+                intent.putExtra("names", bundle);
                 startActivity(intent);
                 return true;
             case android.R.id.home:

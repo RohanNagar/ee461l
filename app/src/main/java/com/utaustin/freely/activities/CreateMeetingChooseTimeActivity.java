@@ -3,9 +3,11 @@ package com.utaustin.freely.activities;
 import android.app.DatePickerDialog;
 import android.app.DialogFragment;
 import android.app.FragmentManager;
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
@@ -18,6 +20,14 @@ import android.widget.TextView;
 import com.utaustin.freely.R;
 import com.utaustin.freely.fragments.DatePickerFragment;
 import com.utaustin.freely.fragments.TimePickerFragment;
+
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.InputStreamReader;
+import java.io.Reader;
+import java.io.UnsupportedEncodingException;
+import java.net.HttpURLConnection;
+import java.net.URL;
 
 public class CreateMeetingChooseTimeActivity extends AppCompatActivity {
 
@@ -76,5 +86,4 @@ public class CreateMeetingChooseTimeActivity extends AppCompatActivity {
                 return super.onOptionsItemSelected(item);
         }
     }
-
 }
