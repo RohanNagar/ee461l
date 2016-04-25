@@ -34,7 +34,7 @@ import java.util.ArrayList;
 public class CreateMeetingChooseTimeActivity extends AppCompatActivity {
 
     EditText nameText;
-    Button beginTimePickerButton;
+    Button beginDatePickerButton, beginTimePickerButton, endDatePickerButton, endTimePickerButton;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -56,11 +56,11 @@ public class CreateMeetingChooseTimeActivity extends AppCompatActivity {
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
         nameText = (EditText) findViewById(R.id.activity_create_meeting_choose_time_name);
-        beginTimePickerButton = (Button) findViewById(R.id.create_meeting_choose_activity_open_begin_picker);
+        beginDatePickerButton = (Button) findViewById(R.id.create_meeting_choose_activity_open_begin_date_picker);
 
         final FragmentManager fragmentManager = getFragmentManager();
 
-        beginTimePickerButton.setOnClickListener(new View.OnClickListener() {
+        beginDatePickerButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
 //                DialogFragment newFragment = new TimePickerFragment();
@@ -68,6 +68,19 @@ public class CreateMeetingChooseTimeActivity extends AppCompatActivity {
 
                 DialogFragment newFragment = new DatePickerFragment();
                 newFragment.show(fragmentManager, "datePicker");
+            }
+        });
+
+
+        beginTimePickerButton = (Button) findViewById(R.id.create_meeting_choose_time_open_begin_time_picker);
+        beginTimePickerButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+//                DialogFragment newFragment = new TimePickerFragment();
+//                newFragment.show(fragmentManager, "timePicker");
+
+                DialogFragment newFragment = new TimePickerFragment();
+                newFragment.show(fragmentManager, "timePicker");
             }
         });
     }
@@ -94,4 +107,5 @@ public class CreateMeetingChooseTimeActivity extends AppCompatActivity {
                 return super.onOptionsItemSelected(item);
         }
     }
+
 }

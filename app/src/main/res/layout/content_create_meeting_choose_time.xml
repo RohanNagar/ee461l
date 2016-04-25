@@ -27,17 +27,32 @@
         android:layout_below="@+id/activity_create_meeting_choose_time_name" />
 
     <Button
-        android:id="@+id/create_meeting_choose_activity_open_begin_picker"
-        android:text="Open Picker"
+        android:id="@+id/create_meeting_choose_activity_open_begin_date_picker"
+        android:text="Choose a start date"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@+id/activity_create_meeting_date_text_view" />
 
     <TextView
+        android:id="@+id/activity_create_meeting_start_time_text_view"
+        android:text="Choose a start time:"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/create_meeting_choose_activity_open_begin_date_picker" />
+
+    <Button
+        android:id="@+id/create_meeting_choose_time_open_begin_time_picker"
+        android:text="Choose a start time"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/activity_create_meeting_start_time_text_view" />
+
+    <!--
+    <TextView
         android:id="@+id/create_meeting_choose_start_date_text_view"
         android:text="Placeholder"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_toRightOf="@+id/create_meeting_choose_activity_open_begin_picker" />
+        android:layout_toRightOf="@+id/create_meeting_choose_activity_open_begin_picker" /> -->
 
 </RelativeLayout>
