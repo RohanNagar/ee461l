@@ -67,7 +67,7 @@ public class CreateMeetingActivity extends AppCompatActivity {
                 Intent intent = new Intent(this, CreateMeetingChooseTimeActivity.class);
                 Bundle bundle = new Bundle();
 
-                ArrayList<String> checkedNames = new ArrayList<>(String);
+                ArrayList<String> checkedNames = new ArrayList<String>();
                 for(int i = 0; i < names.size(); i++) {
                     if(mAdapter.isChecked(i)) {
                         checkedNames.add(names.get(i));
