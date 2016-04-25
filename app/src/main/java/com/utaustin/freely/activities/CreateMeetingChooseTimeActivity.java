@@ -56,28 +56,54 @@ public class CreateMeetingChooseTimeActivity extends AppCompatActivity {
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
         nameText = (EditText) findViewById(R.id.activity_create_meeting_choose_time_name);
-        beginDatePickerButton = (Button) findViewById(R.id.create_meeting_choose_activity_open_begin_date_picker);
 
+        beginDatePickerButton = (Button) findViewById(R.id.create_meeting_choose_activity_open_begin_date_picker);
         final FragmentManager fragmentManager = getFragmentManager();
+
+        endDatePickerButton = (Button) findViewById(R.id.create_meeting_choose_activity_open_end_date_picker);
 
         beginDatePickerButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-//                DialogFragment newFragment = new TimePickerFragment();
-//                newFragment.show(fragmentManager, "timePicker");
 
                 DialogFragment newFragment = new DatePickerFragment();
                 newFragment.show(fragmentManager, "datePicker");
             }
         });
 
+        endDatePickerButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                DialogFragment newFragment2 = new DatePickerFragment();
+                newFragment2.show(fragmentManager, "datePicker");
+            }
+        });
 
         beginTimePickerButton = (Button) findViewById(R.id.create_meeting_choose_time_open_begin_time_picker);
         beginTimePickerButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-//                DialogFragment newFragment = new TimePickerFragment();
-//                newFragment.show(fragmentManager, "timePicker");
+
+                DialogFragment newFragment = new TimePickerFragment();
+                newFragment.show(fragmentManager, "timePicker");
+            }
+        });
+
+        endDatePickerButton = (Button) findViewById(R.id.create_meeting_choose_activity_open_end_date_picker);
+        endDatePickerButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                DialogFragment newFragment = new DatePickerFragment();
+                newFragment.show(fragmentManager, "datePicker");
+            }
+        });
+
+        endTimePickerButton = (Button) findViewById(R.id.create_meeting_choose_time_open_end_time_picker);
+        endTimePickerButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
 
                 DialogFragment newFragment = new TimePickerFragment();
                 newFragment.show(fragmentManager, "timePicker");
@@ -107,5 +133,4 @@ public class CreateMeetingChooseTimeActivity extends AppCompatActivity {
                 return super.onOptionsItemSelected(item);
         }
     }
-
 }
