@@ -33,7 +33,7 @@ public class ChoosePeopleAdapter extends RecyclerView.Adapter<ChoosePeopleAdapte
     // Provide a suitable constructor (depends on the kind of dataset)
     public ChoosePeopleAdapter(ArrayList<String> myDataset) {
         mDataset = myDataset;
-
+        checks = new ArrayList<Boolean>();
         for(int i = 0;i<mDataset.size();i++){
             checks.add(false);
         }

@@ -3,6 +3,7 @@ package com.utaustin.freely.activities;
 import android.app.DatePickerDialog;
 import android.app.DialogFragment;
 import android.app.FragmentManager;
+import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
@@ -28,6 +29,7 @@ import java.io.Reader;
 import java.io.UnsupportedEncodingException;
 import java.net.HttpURLConnection;
 import java.net.URL;
+import java.util.ArrayList;
 
 public class CreateMeetingChooseTimeActivity extends AppCompatActivity {
 
@@ -36,6 +38,12 @@ public class CreateMeetingChooseTimeActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        Intent intent = getIntent();
+        ArrayList<String> checked = intent.getBundleExtra("names").getStringArrayList("names");
+//        for(int i = 0; i < checked.size(); i++) {
+//            Log.d("Checked names: ", checked.get(i));
+//        }
+
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_create_meeting_choose_time);
 
