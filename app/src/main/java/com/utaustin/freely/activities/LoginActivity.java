@@ -22,6 +22,7 @@ import com.google.api.services.calendar.CalendarScopes;
 import com.google.api.services.people.v1.People;
 import com.google.api.services.people.v1.PeopleScopes;
 import com.utaustin.freely.R;
+import com.utaustin.freely.data.UserData;
 
 public class LoginActivity extends AppCompatActivity implements
         GoogleApiClient.OnConnectionFailedListener,
@@ -132,6 +133,12 @@ public class LoginActivity extends AppCompatActivity implements
             String authCode = acct.getServerAuthCode();
             Log.d("signIn", "authCode:" + authCode);
             // TODO: send auth code to backend
+
+            // Create UserData
+            UserData userData = new UserData(
+                    acct.getEmail(),
+                    acct.getDisplayName(),
+                    acct.getServerAuthCode());
 
             // Go to MeetingsActivity
             Intent intent = new Intent(this, MeetingsActivity.class);
