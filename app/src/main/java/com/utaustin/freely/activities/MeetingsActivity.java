@@ -27,6 +27,8 @@ import com.utaustin.freely.R;
 import com.utaustin.freely.Server;
 import com.utaustin.freely.adapters.MeetingsAdapter;
 import com.utaustin.freely.data.SessionData;
+import com.utaustin.freely.data.UserData;
+import com.utaustin.freely.responses.MeetingsResponse;
 
 import org.w3c.dom.UserDataHandler;
 
@@ -86,12 +88,6 @@ public class MeetingsActivity extends AppCompatActivity implements
         // specify an adapter (see also next example)
         ArrayList<SessionData> names = new ArrayList<>();
 
-        names.add(new SessionData("Interview", ""));
-        names.add(new SessionData("Kayaking", ""));
-        names.add(new SessionData("Student meeting", ""));
-        names.add(new SessionData("461L group meeting", ""));
-        names.add(new SessionData("Senior design meeting", ""));
-
         mAdapter = new MeetingsAdapter(names, getApplicationContext());
         mRecyclerView.setAdapter(mAdapter);
         loadMeetings();
@@ -101,12 +97,15 @@ public class MeetingsActivity extends AppCompatActivity implements
         Server.getMeetings(UserData.getEmail(), new Response.Listener<String>() {
             @Override
             public void onResponse(String response) {
-                Log.d("f", response);
+                MeetingsResponse res = new MeetingsResponse(response);
+
+                mAdapter = new MeetingsAdapter(res.Meetings, getApplicationContext());
+                mRecyclerView.setAdapter(mAdapter);
             }
         }, new Response.ErrorListener() {
             @Override
             public void onErrorResponse(VolleyError error) {
-
+                Log.d("f", error.toString());
             }
         });
     }

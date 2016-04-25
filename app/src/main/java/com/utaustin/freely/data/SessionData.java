@@ -3,9 +3,9 @@ package com.utaustin.freely.data;
 public class SessionData {
 
     private String name;
-    private String id;
+    private int id;
 
-    public SessionData(String name, String id){
+    public SessionData(String name, int id){
         this.name = name;
         this.id = id;
     }
@@ -13,7 +13,7 @@ public class SessionData {
     public String getName(){
         return name;
     }
-    public String getId(){
+    public int getId(){
         return id;
     }
 }

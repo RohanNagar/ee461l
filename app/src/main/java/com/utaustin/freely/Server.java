@@ -16,7 +16,7 @@ import java.util.Map;
 
 public class Server {
     private static RequestQueue queue;
-    private static final String url = "http://104.236.89.233:4000";
+    private static final String url = "http://freely.asharmalik.us";
 
     public static void init(Context c) {
         queue = Volley.newRequestQueue(c);

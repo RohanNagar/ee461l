@@ -9,11 +9,11 @@ public class UserData {
         return authCode;
     }
 
-    public String getEmail() {
+    public static String getEmail() {
         return email;
     }
 
-    public String getName() {
+    public static String getName() {
         return name;
     }
 
