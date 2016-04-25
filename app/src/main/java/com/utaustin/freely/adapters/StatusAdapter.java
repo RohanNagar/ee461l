@@ -55,8 +55,13 @@ public class StatusAdapter extends RecyclerView.Adapter<StatusAdapter.ViewHolder
     public void onBindViewHolder(ViewHolder holder, final int position) {
         // - get element from your dataset at this position
         // - replace the contents of the view with that element
-        holder.nameTextView.setText("Name");
-        holder.statusTextView.setText("Authorized");
+        holder.nameTextView.setText(mDataset.get(position).email);
+
+        if(mDataset.get(position).auth){
+            holder.statusTextView.setText("Authorized");
+        }else{
+            holder.statusTextView.setText("Not authorized");
+        }
 
     }
 

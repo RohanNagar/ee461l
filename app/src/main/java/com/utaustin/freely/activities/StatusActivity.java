@@ -15,6 +15,7 @@ import com.utaustin.freely.Server;
 import com.utaustin.freely.adapters.MeetingsAdapter;
 import com.utaustin.freely.adapters.StatusAdapter;
 import com.utaustin.freely.data.MeetingData;
+import com.utaustin.freely.responses.MeetingStatusResponse;
 
 import java.util.ArrayList;
 
@@ -50,17 +51,20 @@ public class StatusActivity extends AppCompatActivity {
 
         ArrayList<MeetingData> meetingData = new ArrayList<MeetingData>();
 
-        for(int i = 0;i<5;i++){
-            meetingData.add(new MeetingData());
-        }
-
         mAdapter = new StatusAdapter(meetingData, getApplicationContext());
         recyclerView.setAdapter(mAdapter);
 
+        loadMeetingData();
+    }
+
+    private void loadMeetingData(){
         Server.getMeeting(id, new Response.Listener<String>() {
             @Override
             public void onResponse(String response) {
-                Log.d("f", response);
+                MeetingStatusResponse res = new MeetingStatusResponse(response);
+
+                mAdapter = new StatusAdapter(res.meetingData, getApplicationContext());
+                recyclerView.setAdapter(mAdapter);
             }
         }, new Response.ErrorListener() {
             @Override
@@ -68,6 +72,7 @@ public class StatusActivity extends AppCompatActivity {
                 Log.d("f", error.toString());
             }
         });
+
     }
 
     @Override
