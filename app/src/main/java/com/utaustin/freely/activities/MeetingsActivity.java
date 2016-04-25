@@ -11,6 +11,8 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 
+import com.android.volley.Response;
+import com.android.volley.VolleyError;
 import com.google.android.gms.common.api.Status;
 
 import android.content.Intent;
@@ -25,6 +27,8 @@ import com.utaustin.freely.R;
 import com.utaustin.freely.Server;
 import com.utaustin.freely.adapters.MeetingsAdapter;
 import com.utaustin.freely.data.SessionData;
+
+import org.w3c.dom.UserDataHandler;
 
 import java.util.ArrayList;
 
@@ -82,8 +86,6 @@ public class MeetingsActivity extends AppCompatActivity implements
         // specify an adapter (see also next example)
         ArrayList<SessionData> names = new ArrayList<>();
 
-
-
         names.add(new SessionData("Interview", ""));
         names.add(new SessionData("Kayaking", ""));
         names.add(new SessionData("Student meeting", ""));
@@ -92,6 +94,21 @@ public class MeetingsActivity extends AppCompatActivity implements
 
         mAdapter = new MeetingsAdapter(names, getApplicationContext());
         mRecyclerView.setAdapter(mAdapter);
+        loadMeetings();
+    }
+
+    private void loadMeetings(){
+        Server.getMeetings(UserData.getEmail(), new Response.Listener<String>() {
+            @Override
+            public void onResponse(String response) {
+                Log.d("f", response);
+            }
+        }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+
+            }
+        });
     }
 
     @Override
