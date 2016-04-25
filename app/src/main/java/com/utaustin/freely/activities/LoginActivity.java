@@ -134,11 +134,10 @@ public class LoginActivity extends AppCompatActivity implements
             Log.d("signIn", "authCode:" + authCode);
             // TODO: send auth code to backend
 
-            // Create UserData
-            UserData userData = new UserData(
-                    acct.getEmail(),
-                    acct.getDisplayName(),
-                    acct.getServerAuthCode());
+            // Set UserData
+            UserData.setEmail(acct.getEmail());
+            UserData.setName(acct.getDisplayName());
+            UserData.setAuthCode(acct.getServerAuthCode());
 
             // Go to MeetingsActivity
             Intent intent = new Intent(this, MeetingsActivity.class);

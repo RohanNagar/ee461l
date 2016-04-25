@@ -1,15 +1,9 @@
 package com.utaustin.freely.data;
 
 public class UserData {
-    private String email;
-    private String name;
-    private String authCode;
-
-    public UserData(String email, String name, String authCode) {
-        this.email = email;
-        this.name = name;
-        this.authCode = authCode;
-    }
+    private static String email;
+    private static String name;
+    private static String authCode;
 
     public String getAuthCode() {
         return authCode;
@@ -21,5 +15,17 @@ public class UserData {
 
     public String getName() {
         return name;
+    }
+
+    public static void setEmail(String email) {
+        UserData.email = email;
+    }
+
+    public static void setName(String name) {
+        UserData.name = name;
+    }
+
+    public static void setAuthCode(String authCode) {
+        UserData.authCode = authCode;
     }
 }
