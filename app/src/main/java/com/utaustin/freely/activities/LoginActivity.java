@@ -12,12 +12,15 @@ import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
 import com.google.android.gms.auth.api.signin.GoogleSignInOptions;
 import com.google.android.gms.auth.api.signin.GoogleSignInResult;
 import com.google.android.gms.common.ConnectionResult;
+import com.google.android.gms.common.Scopes;
 import com.google.android.gms.common.SignInButton;
 import com.google.android.gms.common.api.GoogleApiClient;
 import com.google.android.gms.common.api.OptionalPendingResult;
 import com.google.android.gms.common.api.ResultCallback;
 import com.google.android.gms.common.api.Scope;
 import com.google.api.services.calendar.CalendarScopes;
+import com.google.api.services.people.v1.People;
+import com.google.api.services.people.v1.PeopleScopes;
 import com.utaustin.freely.R;
 
 public class LoginActivity extends AppCompatActivity implements
@@ -43,7 +46,9 @@ public class LoginActivity extends AppCompatActivity implements
                 .requestEmail()
                 .requestIdToken(serverClientId)
                 .requestServerAuthCode(serverClientId, false)
-                .requestScopes(new Scope(CalendarScopes.CALENDAR)) // not sure if this is right
+                .requestScopes(
+                        new Scope(CalendarScopes.CALENDAR),
+                        new Scope(PeopleScopes.CONTACTS_READONLY))
                 .build();
 
         // Build a GoogleApiClient with access to the Google Sign-In API and the
