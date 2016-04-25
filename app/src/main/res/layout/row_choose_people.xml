@@ -20,7 +20,7 @@
             />
 
         <CheckBox
-            android:id="@+id/checkbox_meat"
+            android:id="@+id/cb_people"
             android:layout_alignParentRight="true"
             android:layout_centerVertical="true"
             android:layout_width="wrap_content"

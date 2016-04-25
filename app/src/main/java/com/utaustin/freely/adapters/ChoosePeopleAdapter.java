@@ -4,6 +4,7 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.CheckBox;
 import android.widget.TextView;
 
 import com.utaustin.freely.R;
@@ -12,6 +13,7 @@ import java.util.ArrayList;
 
 public class ChoosePeopleAdapter extends RecyclerView.Adapter<ChoosePeopleAdapter.ViewHolder> {
     private ArrayList<String> mDataset;
+    private ArrayList<Boolean> checks;
 
     // Provide a reference to the views for each data item
     // Complex data items may need more than one view per item, and
@@ -19,16 +21,22 @@ public class ChoosePeopleAdapter extends RecyclerView.Adapter<ChoosePeopleAdapte
     public static class ViewHolder extends RecyclerView.ViewHolder {
         // each data item is just a string in this case
         public TextView mTextView;
+        public CheckBox cb;
 
         public ViewHolder(View v) {
             super(v);
             mTextView = (TextView) v.findViewById(R.id.row_choose_people_name_textview);
+            cb  = (TextView) v.findViewById(R.id.cb_people);
         }
     }
 
     // Provide a suitable constructor (depends on the kind of dataset)
     public ChoosePeopleAdapter(ArrayList<String> myDataset) {
         mDataset = myDataset;
+
+        for(int i = 0;i<mDataset.size();i++){
+            checks.add(false);
+        }
     }
 
     // Create new views (invoked by the layout manager)
@@ -46,16 +54,28 @@ public class ChoosePeopleAdapter extends RecyclerView.Adapter<ChoosePeopleAdapte
 
     // Replace the contents of a view (invoked by the layout manager)
     @Override
-    public void onBindViewHolder(ViewHolder holder, int position) {
+    public void onBindViewHolder(ViewHolder holder, final int position) {
         // - get element from your dataset at this position
         // - replace the contents of the view with that element
         holder.mTextView.setText(mDataset.get(position));
 
+        holder.cb.setChecked(checks.get(position));
+        
+        holder.cb.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                checks.set(position, holder.cb.isChecked());
+            }
+        });
     }
 
     // Return the size of your dataset (invoked by the layout manager)
     @Override
     public int getItemCount() {
         return mDataset.size();
+    }
+
+    public boolean isChecked(int pos){
+        return checks.get(pos);
     }
 }
