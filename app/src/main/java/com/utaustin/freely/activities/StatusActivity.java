@@ -48,7 +48,13 @@ public class StatusActivity extends AppCompatActivity {
         mLayoutManager = new LinearLayoutManager(this);
         recyclerView.setLayoutManager(mLayoutManager);
 
-        mAdapter = new StatusAdapter(new ArrayList<MeetingData>(), getApplicationContext());
+        ArrayList<MeetingData> meetingData = new ArrayList<MeetingData>();
+
+        for(int i = 0;i<5;i++){
+            meetingData.add(new MeetingData());
+        }
+
+        mAdapter = new StatusAdapter(meetingData, getApplicationContext());
         recyclerView.setAdapter(mAdapter);
 
         Server.getMeeting(id, new Response.Listener<String>() {

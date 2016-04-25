@@ -157,32 +157,32 @@ public class LoginActivity extends AppCompatActivity implements
 
             /* STILL NEED TO TEST THIS CODE */
             // Get accessToken
-            String accessToken = "";
-            try {
-                GoogleTokenResponse response = new GoogleAuthorizationCodeTokenRequest(
-                        new NetHttpTransport(), JacksonFactory.getDefaultInstance(),
-                        "https://www.googleapis.com/oauth2/v4/token", serverClientId,
-                        serverClientSecret, acct.getServerAuthCode(), "").execute();
-                accessToken = response.getAccessToken();
-            } catch (IOException e) {
-                Log.d("auth", "error");
-            }
-
-            // Get contacts
-            GoogleCredential credential = new GoogleCredential.Builder()
-                    .build().setAccessToken(accessToken);
-
-            People peopleService = new People.Builder(new NetHttpTransport(), JacksonFactory.getDefaultInstance(), credential)
-                    .build();
-
-            List<Person> connections;
-            try {
-                ListConnectionsResponse response = peopleService.people().connections().list("people/me").execute();
-                connections = response.getConnections();
-                Log.d("contacts", connections.toString());
-            } catch (IOException e) {
-                Log.d("contacts", "error");
-            }
+//            String accessToken = "";
+//            try {
+//                GoogleTokenResponse response = new GoogleAuthorizationCodeTokenRequest(
+//                        new NetHttpTransport(), JacksonFactory.getDefaultInstance(),
+//                        "https://www.googleapis.com/oauth2/v4/token", serverClientId,
+//                        serverClientSecret, acct.getServerAuthCode(), "").execute();
+//                accessToken = response.getAccessToken();
+//            } catch (IOException e) {
+//                Log.d("auth", "error");
+//            }
+//
+//            // Get contacts
+//            GoogleCredential credential = new GoogleCredential.Builder()
+//                    .build().setAccessToken(accessToken);
+//
+//            People peopleService = new People.Builder(new NetHttpTransport(), JacksonFactory.getDefaultInstance(), credential)
+//                    .build();
+//
+//            List<Person> connections;
+//            try {
+//                ListConnectionsResponse response = peopleService.people().connections().list("people/me").execute();
+//                connections = response.getConnections();
+//                Log.d("contacts", connections.toString());
+//            } catch (IOException e) {
+//                Log.d("contacts", "error");
+//            }
             /* END STILL NEED TO TEST THIS CODE */
 
             // Set UserData
