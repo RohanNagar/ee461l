@@ -60,7 +60,7 @@ public class ChoosePeopleAdapter extends RecyclerView.Adapter<ChoosePeopleAdapte
         holder.mTextView.setText(mDataset.get(position));
 
         holder.cb.setChecked(checks.get(position));
-        
+
         holder.cb.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
