@@ -11,12 +11,13 @@ import android.widget.TextView;
 
 import com.utaustin.freely.R;
 import com.utaustin.freely.activities.StatusActivity;
+import com.utaustin.freely.data.MeetingData;
 import com.utaustin.freely.data.SessionData;
 
 import java.util.ArrayList;
 
-public class MeetingsAdapter extends RecyclerView.Adapter<MeetingsAdapter.ViewHolder> {
-    private ArrayList<SessionData> mDataset;
+public class StatusAdapter extends RecyclerView.Adapter<StatusAdapter.ViewHolder> {
+    private ArrayList<MeetingData> mDataset;
     private Context context;
 
     // Provide a reference to the views for each data item
@@ -33,15 +34,15 @@ public class MeetingsAdapter extends RecyclerView.Adapter<MeetingsAdapter.ViewHo
     }
 
     // Provide a suitable constructor (depends on the kind of dataset)
-    public MeetingsAdapter(ArrayList<SessionData> myDataset, Context context) {
+    public StatusAdapter(ArrayList<MeetingData> myDataset, Context context) {
         mDataset = myDataset;
         this.context = context;
     }
 
     // Create new views (invoked by the layout manager)
     @Override
-    public MeetingsAdapter.ViewHolder onCreateViewHolder(ViewGroup parent,
-                                                   int viewType) {
+    public StatusAdapter.ViewHolder onCreateViewHolder(ViewGroup parent,
+                                                         int viewType) {
         // create a new view
         View v = LayoutInflater.from(parent.getContext())
                 .inflate(R.layout.row_meetings, parent, false);
@@ -56,17 +57,8 @@ public class MeetingsAdapter extends RecyclerView.Adapter<MeetingsAdapter.ViewHo
     public void onBindViewHolder(ViewHolder holder, final int position) {
         // - get element from your dataset at this position
         // - replace the contents of the view with that element
-        holder.mTextView.setText(mDataset.get(position).getName());
+        holder.mTextView.setText("lol");
 
-        holder.itemView.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(v.getContext(), StatusActivity.class);
-                intent.putExtra("meetingName", mDataset.get(position).getName());
-                intent.putExtra("id", mDataset.get(position).getId());
-                v.getContext().startActivity(intent);
-            }
-        });
     }
 
     // Return the size of your dataset (invoked by the layout manager)

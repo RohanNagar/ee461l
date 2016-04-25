@@ -89,10 +89,10 @@ public class Server {
         Server.post("/meeting", params, responseListener, errorListener);
     }
 
-    public static void getMeeting(String sessionId, Response.Listener<String> responseListener, Response.ErrorListener errorListener){
+    public static void getMeeting(int sessionId, Response.Listener<String> responseListener, Response.ErrorListener errorListener){
         Map<String, String> params = new HashMap<>();
 
-        params.put("session_id", sessionId);
+        params.put("session_id", Integer.toString(sessionId));
 
         Server.get("/meeting", params, responseListener, errorListener);
     }
