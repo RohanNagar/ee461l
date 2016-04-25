@@ -17,7 +17,7 @@ import java.util.ArrayList;
 public class CreateMeetingActivity extends AppCompatActivity {
 
     private RecyclerView mRecyclerView;
-    private RecyclerView.Adapter mAdapter;
+    private ChoosePeopleAdapter mAdapter;
     private RecyclerView.LayoutManager mLayoutManager;
     private ArrayList<String> names;
 
@@ -66,7 +66,16 @@ public class CreateMeetingActivity extends AppCompatActivity {
             case R.id.menu_create_group_next:
                 Intent intent = new Intent(this, CreateMeetingChooseTimeActivity.class);
                 Bundle bundle = new Bundle();
-                bundle.putStringArrayList("names", names);
+
+                ArrayList<String> checkedNames = new ArrayList<>(String);
+                for(int i = 0; i < names.size(); i++) {
+                    if(mAdapter.isChecked(i)) {
+                        checkedNames.add(names.get(i));
+                    }
+                }
+
+
+                bundle.putStringArrayList("names", checkedNames);
                 intent.putExtra("names", bundle);
                 startActivity(intent);
                 return true;

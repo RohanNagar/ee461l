@@ -26,7 +26,7 @@ public class ChoosePeopleAdapter extends RecyclerView.Adapter<ChoosePeopleAdapte
         public ViewHolder(View v) {
             super(v);
             mTextView = (TextView) v.findViewById(R.id.row_choose_people_name_textview);
-            cb  = (TextView) v.findViewById(R.id.cb_people);
+            cb  = (CheckBox) v.findViewById(R.id.cb_people);
         }
     }
 
@@ -54,7 +54,7 @@ public class ChoosePeopleAdapter extends RecyclerView.Adapter<ChoosePeopleAdapte
 
     // Replace the contents of a view (invoked by the layout manager)
     @Override
-    public void onBindViewHolder(ViewHolder holder, final int position) {
+    public void onBindViewHolder(final ViewHolder holder, final int position) {
         // - get element from your dataset at this position
         // - replace the contents of the view with that element
         holder.mTextView.setText(mDataset.get(position));
