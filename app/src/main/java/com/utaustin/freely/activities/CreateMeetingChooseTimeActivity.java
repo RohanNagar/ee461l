@@ -39,7 +39,7 @@ public class CreateMeetingChooseTimeActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         Intent intent = getIntent();
-        ArrayList<String> checked = intent.getBundleExtra("names").getStringArrayList("names");
+//        ArrayList<String> checked = intent.getBundleExtra("names").getStringArrayList("names");
 //        for(int i = 0; i < checked.size(); i++) {
 //            Log.d("Checked names: ", checked.get(i));
 //        }

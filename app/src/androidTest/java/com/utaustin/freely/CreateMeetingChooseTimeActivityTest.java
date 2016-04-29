@@ -26,12 +26,12 @@ public class CreateMeetingChooseTimeActivityTest {
     @Test
     public void testElementsDisplayed() {
         onView(withId(R.id.activity_create_meeting_choose_time_name)).check(matches(isDisplayed()));
-        onView(withId(R.id.create_meeting_choose_activity_open_begin_picker)).check(matches(isDisplayed()));
+        onView(withId(R.id.create_meeting_choose_activity_open_begin_date_picker)).check(matches(isDisplayed()));
     }
 
     @Test
     public void testClickDatePickerDialog() {
-        onView(withId(R.id.create_meeting_choose_activity_open_begin_picker)).perform(click());
+        onView(withId(R.id.create_meeting_choose_activity_open_begin_date_picker)).perform(click());
 
         // Make sure it shows up
         onView(withId(android.R.id.button1)).check(matches(isDisplayed()));
