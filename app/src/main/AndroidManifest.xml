@@ -48,6 +48,10 @@
             android:name=".activities.StatusActivity"
             android:label="Selected Meeting"
             android:screenOrientation="portrait" />
+        <activity
+            android:name=".activities.FreeTimeActivity"
+            android:label="@string/title_activity_free_time"
+            android:theme="@style/AppTheme.NoActionBar"></activity>
     </application>
 
 </manifest>

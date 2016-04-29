@@ -15,4 +15,12 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"/>
 
+    <Button
+        android:id="@+id/activity_status_button"
+        android:text="@string/see_free_times"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+
 </RelativeLayout>
