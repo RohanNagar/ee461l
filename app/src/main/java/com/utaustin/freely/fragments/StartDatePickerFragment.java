@@ -15,7 +15,7 @@ import org.w3c.dom.Text;
 
 import java.util.Calendar;
 
-public class DatePickerFragment extends DialogFragment
+public class StartDatePickerFragment extends DialogFragment
         implements DatePickerDialog.OnDateSetListener {
 
     @Override
@@ -30,10 +30,11 @@ public class DatePickerFragment extends DialogFragment
         return new DatePickerDialog(getActivity(), this, year, month, day);
     }
 
+
     public void onDateSet(DatePicker view, int year, int month, int day) {
         TextView parentView = (TextView) getActivity().findViewById(R.id.activity_create_meeting_date_text_view);
-        //TextView text = (TextView) parentView.findViewById(R.id.activity_create_meeting_date_text_view);
-        String date = month + " " + day + ", " + year;
+        String date = (month+1) + " " + day + ", " + year;
         parentView.setText(date);
     }
+
 }

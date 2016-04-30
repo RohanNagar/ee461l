@@ -1,35 +1,23 @@
 package com.utaustin.freely.activities;
 
-import android.app.DatePickerDialog;
 import android.app.DialogFragment;
 import android.app.FragmentManager;
 import android.content.Intent;
-import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
-import android.util.Log;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
-import android.widget.DatePicker;
 import android.widget.EditText;
-import android.widget.TextView;
 
 import com.utaustin.freely.R;
-import com.utaustin.freely.fragments.DatePickerFragment;
-import com.utaustin.freely.fragments.TimePickerFragment;
-
-import java.io.IOException;
-import java.io.InputStream;
-import java.io.InputStreamReader;
-import java.io.Reader;
-import java.io.UnsupportedEncodingException;
-import java.net.HttpURLConnection;
-import java.net.URL;
-import java.util.ArrayList;
+import com.utaustin.freely.fragments.EndDatePickerFragment;
+import com.utaustin.freely.fragments.EndTimePickerFragment;
+import com.utaustin.freely.fragments.StartDatePickerFragment;
+import com.utaustin.freely.fragments.StartTimePickerFragment;
 
 public class CreateMeetingChooseTimeActivity extends AppCompatActivity {
 
@@ -57,25 +45,24 @@ public class CreateMeetingChooseTimeActivity extends AppCompatActivity {
 
         nameText = (EditText) findViewById(R.id.activity_create_meeting_choose_time_name);
 
-        beginDatePickerButton = (Button) findViewById(R.id.create_meeting_choose_activity_open_begin_date_picker);
         final FragmentManager fragmentManager = getFragmentManager();
 
-        endDatePickerButton = (Button) findViewById(R.id.create_meeting_choose_activity_open_end_date_picker);
-
+        beginDatePickerButton = (Button) findViewById(R.id.create_meeting_choose_activity_open_begin_date_picker);
         beginDatePickerButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
 
-                DialogFragment newFragment = new DatePickerFragment();
+                DialogFragment newFragment = new StartDatePickerFragment();
                 newFragment.show(fragmentManager, "datePicker");
             }
         });
 
+        endDatePickerButton = (Button) findViewById(R.id.create_meeting_choose_activity_open_end_date_picker);
         endDatePickerButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
 
-                DialogFragment newFragment2 = new DatePickerFragment();
+                DialogFragment newFragment2 = new EndDatePickerFragment();
                 newFragment2.show(fragmentManager, "datePicker");
             }
         });
@@ -85,18 +72,8 @@ public class CreateMeetingChooseTimeActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
 
-                DialogFragment newFragment = new TimePickerFragment();
-                newFragment.show(fragmentManager, "timePicker");
-            }
-        });
-
-        endDatePickerButton = (Button) findViewById(R.id.create_meeting_choose_activity_open_end_date_picker);
-        endDatePickerButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-
-                DialogFragment newFragment = new DatePickerFragment();
-                newFragment.show(fragmentManager, "datePicker");
+                DialogFragment newFragment3 = new StartTimePickerFragment();
+                newFragment3.show(fragmentManager, "timePicker");
             }
         });
 
@@ -105,8 +82,8 @@ public class CreateMeetingChooseTimeActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
 
-                DialogFragment newFragment = new TimePickerFragment();
-                newFragment.show(fragmentManager, "timePicker");
+                DialogFragment newFragment4 = new EndTimePickerFragment();
+                newFragment4.show(fragmentManager, "timePicker");
             }
         });
     }

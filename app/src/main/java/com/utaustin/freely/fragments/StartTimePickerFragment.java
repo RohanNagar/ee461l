@@ -12,7 +12,7 @@ import com.utaustin.freely.R;
 
 import java.util.Calendar;
 
-public class TimePickerFragment extends DialogFragment
+public class StartTimePickerFragment extends DialogFragment
         implements TimePickerDialog.OnTimeSetListener {
 
     @Override
@@ -28,9 +28,7 @@ public class TimePickerFragment extends DialogFragment
     }
 
     public void onTimeSet(TimePicker view, int hourOfDay, int minute) {
-        // Do something with the time chosen by the users
         TextView parentView = (TextView) getActivity().findViewById(R.id.activity_create_meeting_start_time_text_view);
-        //TextView text = (TextView) parentView.findViewById(R.id.activity_create_meeting_date_text_view);
         String time = hourOfDay + " : " + minute;
         parentView.setText(time);
     }
