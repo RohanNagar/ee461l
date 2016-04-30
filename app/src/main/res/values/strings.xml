@@ -9,4 +9,6 @@
     <string name="sign_out">Sign out</string>
     <string name="meeting_name">Meeting name</string>
     <string name="title_activity_maps">Map</string>
+    <string name="see_free_times">See free times</string>
+    <string name="title_activity_free_time">Free Times</string>
 </resources>

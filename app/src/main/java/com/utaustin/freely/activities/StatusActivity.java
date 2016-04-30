@@ -1,5 +1,6 @@
 package com.utaustin.freely.activities;
 
+import android.app.Activity;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -7,6 +8,8 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.Button;
 
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
@@ -22,6 +25,7 @@ import java.util.ArrayList;
 public class StatusActivity extends AppCompatActivity {
     private String meetingName;
     private int id;
+    private Button button;
     private RecyclerView recyclerView;
     private StatusAdapter mAdapter;
     private RecyclerView.LayoutManager mLayoutManager;
@@ -44,6 +48,7 @@ public class StatusActivity extends AppCompatActivity {
         getSupportActionBar().setHomeButtonEnabled(true);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
+        button = (Button) findViewById(R.id.activity_status_button);
         recyclerView = (RecyclerView) findViewById(R.id.activity_status_recycler_view);
 
         mLayoutManager = new LinearLayoutManager(this);
@@ -53,6 +58,17 @@ public class StatusActivity extends AppCompatActivity {
 
         mAdapter = new StatusAdapter(meetingData, getApplicationContext());
         recyclerView.setAdapter(mAdapter);
+
+        button.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getApplicationContext(), FreeTimeActivity.class);
+
+                intent.putExtra("id", id);
+
+                startActivity(intent);
+            }
+        });
 
         loadMeetingData();
     }
