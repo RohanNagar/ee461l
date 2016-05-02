@@ -1,5 +1,7 @@
 package com.utaustin.freely.responses;
 
+import android.util.Log;
+
 import com.utaustin.freely.data.MeetingData;
 
 import org.json.JSONArray;
@@ -24,7 +26,7 @@ public class MeetingStatusResponse {
 
                 for(int i = 0;i<emails.length();i++){
                     String email = emails.getJSONObject(i).getString("email");
-                    boolean auth = (emails.getJSONObject(i).getString("google_cal_token") != null);
+                    boolean auth = (!emails.getJSONObject(i).getString("google_cal_token").equals("null"));
                     MeetingData data = new MeetingData(email, auth);
 
                     meetingData.add(data);
