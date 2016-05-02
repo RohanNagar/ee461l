@@ -14,6 +14,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
@@ -23,6 +24,7 @@ import com.utaustin.freely.fragments.EndDatePickerFragment;
 import com.utaustin.freely.fragments.EndTimePickerFragment;
 import com.utaustin.freely.fragments.StartDatePickerFragment;
 import com.utaustin.freely.fragments.StartTimePickerFragment;
+import com.utaustin.freely.responses.StandardResponse;
 
 import java.util.ArrayList;
 
@@ -162,7 +164,18 @@ public class CreateMeetingChooseTimeActivity extends AppCompatActivity {
         Server.createMeeting(emails, groupName, beginTime, endTime, new Response.Listener<String>() {
             @Override
             public void onResponse(String response) {
-                Log.d("freely", response);
+                StandardResponse res  = new StandardResponse(response);
+
+                if (res.success) {
+                    Intent intent = new Intent(getApplicationContext(), MeetingsActivity.class);
+
+                    intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_TASK_ON_HOME);
+
+                    startActivity(intent);
+                    finish();
+                }else{
+                    Toast.makeText(CreateMeetingChooseTimeActivity.this, "There was an error.", Toast.LENGTH_SHORT).show();
+                }
             }
         }, new Response.ErrorListener() {
             @Override
@@ -170,8 +183,6 @@ public class CreateMeetingChooseTimeActivity extends AppCompatActivity {
                 Log.d("freely", error.toString());
             }
         });
-
-        Log.d("freely", "begin: "+beginTime+", end: "+endTime);
     }
 
     public void setBeginDate(int year, int month, int day){

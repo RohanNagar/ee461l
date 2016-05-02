@@ -79,6 +79,21 @@ public class StatusActivity extends AppCompatActivity {
             public void onResponse(String response) {
                 MeetingStatusResponse res = new MeetingStatusResponse(response);
 
+                ArrayList<MeetingData> meetingData = res.meetingData;
+
+                boolean authMissing = false;
+
+                for(int i = 0;i<meetingData.size();i++){
+                    if(!meetingData.get(i).auth){
+                        authMissing = true;
+                        break;
+                    }
+                }
+
+                if(!authMissing){
+                    button.setVisibility(View.VISIBLE);
+                }
+
                 mAdapter = new StatusAdapter(res.meetingData, getApplicationContext());
                 recyclerView.setAdapter(mAdapter);
             }
