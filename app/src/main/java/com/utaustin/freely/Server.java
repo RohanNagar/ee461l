@@ -69,7 +69,7 @@ public class Server {
         queue.add(sr);
     }
 
-    public static void createMeeting(ArrayList<String> emails, String groupName, String beginTime, String endTime, int duration, Response.Listener<String> responseListener, Response.ErrorListener errorListener) {
+    public static void createMeeting(ArrayList<String> emails, String groupName, String beginTime, String endTime, Response.Listener<String> responseListener, Response.ErrorListener errorListener) {
         Map<String, String> params = new HashMap<>();
         String emailsFormatted = "[";
 

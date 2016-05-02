@@ -27,6 +27,7 @@ public class CreateMeetingChooseTimeActivity extends AppCompatActivity {
 
     private EditText nameText;
     private Button beginDatePickerButton, beginTimePickerButton, endDatePickerButton, endTimePickerButton;
+    private TextView startDateTextView, beginTimeTextView, endDateTextView, endTimeTextView;
 
     private ArrayList<String> emails;
 
@@ -51,6 +52,11 @@ public class CreateMeetingChooseTimeActivity extends AppCompatActivity {
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
         nameText = (EditText) findViewById(R.id.activity_create_meeting_choose_time_name);
+        startDateTextView = (TextView) findViewById(R.id.activity_create_meeting_date_text_view);
+        beginTimeTextView = (TextView) findViewById(R.id.activity_create_meeting_start_time_text_view);
+        endDateTextView = (TextView) findViewById(R.id.activity_create_meeting_end_date_text_view);
+        endTimeTextView = (TextView) findViewById(R.id.activity_create_meeting_end_time_text_view);
+
 
         final FragmentManager fragmentManager = getFragmentManager();
 
@@ -108,7 +114,7 @@ public class CreateMeetingChooseTimeActivity extends AppCompatActivity {
         // Handle item selection
         switch (item.getItemId()) {
             case R.id.menu_create_meeting_finish:
-                // TODO
+                createMeeting();
                 return true;
             case android.R.id.home:
                 finish();
@@ -118,18 +124,48 @@ public class CreateMeetingChooseTimeActivity extends AppCompatActivity {
         }
     }
 
-    public void setBeginDate(int year, int month, int day){
-        TextView startDateTextView = (TextView) findViewById(R.id.activity_create_meeting_date_text_view);
+    public void createMeeting(){
+        String groupName = nameText.getText().toString();
 
+        if(groupName.length() == 0){
+            return;
+        }
+
+
+    }
+
+    public void setBeginDate(int year, int month, int day){
         String date = (month+1) + "/" + day + "/" + year;
         startDateTextView.setText(date);
+    }
+
+    public void setBeginTime(int hourOfDay, int minute){
+
+        beginTimeTextView.setText(getFormattedTime(hourOfDay, minute));
     }
 
     public void setEndDate(int year, int month, int day){
-        TextView startDateTextView = (TextView) findViewById(R.id.activity_create_meeting_end_date_text_view);
 
         String date = (month+1) + "/" + day + "/" + year;
-        startDateTextView.setText(date);
+        endDateTextView.setText(date);
     }
 
+    public void setEndTime(int hourOfDay, int minute){
+        endTimeTextView.setText(getFormattedTime(hourOfDay, minute));
+    }
+
+    public String getFormattedTime(int hour, int minute){
+        String hourFormatted = hour+"";
+        String minuteFormatted = minute+"";
+
+        if(hour<10){
+            hourFormatted = "0"+hourFormatted;
+        }
+
+        if(minute<10){
+            minuteFormatted = "0"+minuteFormatted;
+        }
+
+        return hourFormatted+":"+minuteFormatted;
+    }
 }

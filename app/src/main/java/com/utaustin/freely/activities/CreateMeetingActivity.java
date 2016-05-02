@@ -78,6 +78,11 @@ public class CreateMeetingActivity extends AppCompatActivity {
                     }
                 }
 
+                //need at least 2 people for this app to work
+                if(checkedEmails.size() < 2){
+                    return true;
+                }
+
                 bundle.putStringArrayList("names", checkedNames);
                 bundle.putStringArrayList("emails", checkedEmails);
 

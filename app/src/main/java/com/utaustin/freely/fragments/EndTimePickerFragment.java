@@ -9,6 +9,7 @@ import android.widget.TextView;
 import android.widget.TimePicker;
 
 import com.utaustin.freely.R;
+import com.utaustin.freely.activities.CreateMeetingChooseTimeActivity;
 
 import java.util.Calendar;
 
@@ -28,8 +29,8 @@ public class EndTimePickerFragment extends DialogFragment
     }
 
     public void onTimeSet(TimePicker view, int hourOfDay, int minute) {
-        TextView parentView = (TextView) getActivity().findViewById(R.id.activity_create_meeting_end_time_text_view);
-        String time = hourOfDay + " : " + minute;
-        parentView.setText(time);
+        CreateMeetingChooseTimeActivity activity = (CreateMeetingChooseTimeActivity) getActivity();
+
+        activity.setEndTime(hourOfDay, minute);
     }
 }
