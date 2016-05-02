@@ -13,6 +13,7 @@ import com.utaustin.freely.R;
 import com.utaustin.freely.adapters.ChoosePeopleAdapter;
 import com.utaustin.freely.data.EmailContact;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 
 public class CreateMeetingActivity extends AppCompatActivity {
@@ -21,7 +22,7 @@ public class CreateMeetingActivity extends AppCompatActivity {
     private ChoosePeopleAdapter mAdapter;
     private RecyclerView.LayoutManager mLayoutManager;
     private ArrayList<EmailContact> emails;
-    private ArrayList<String> contacts; // unused right now, still using emails
+    private ArrayList<EmailContact> contacts; // unused right now, still using emails
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -52,7 +53,12 @@ public class CreateMeetingActivity extends AppCompatActivity {
 //        }
 
         /* PART OF GOOGLE CONTACTS */
-        contacts = getIntent().getStringArrayListExtra("contacts");
+        Serializable s = getIntent().getSerializableExtra("contacts");
+        if (s != null) {
+            contacts = (ArrayList<EmailContact>) s;
+        } else {
+            contacts = new ArrayList<>();
+        }
         // This gets contacts from the user's phone. Commented out
         // because we're trying to get contacts from Google
 //        Cursor contacts = getContentResolver().query(ContactsContract.Contacts.CONTENT_URI,

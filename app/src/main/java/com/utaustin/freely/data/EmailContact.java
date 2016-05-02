@@ -1,6 +1,8 @@
 package com.utaustin.freely.data;
 
-public class EmailContact {
+import java.io.Serializable;
+
+public class EmailContact implements Serializable {
     private String name;
     private String email;
 
@@ -15,5 +17,10 @@ public class EmailContact {
 
     public String getEmail(){
         return email;
+    }
+
+    @Override
+    public String toString() {
+        return name + " " + email;
     }
 }

@@ -26,12 +26,14 @@ import com.google.android.gms.common.api.ResultCallback;
 import com.utaustin.freely.R;
 import com.utaustin.freely.Server;
 import com.utaustin.freely.adapters.MeetingsAdapter;
+import com.utaustin.freely.data.EmailContact;
 import com.utaustin.freely.data.SessionData;
 import com.utaustin.freely.data.UserData;
 import com.utaustin.freely.responses.MeetingsResponse;
 
 import org.w3c.dom.UserDataHandler;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 
 public class MeetingsActivity extends AppCompatActivity implements
@@ -43,7 +45,7 @@ public class MeetingsActivity extends AppCompatActivity implements
     private RecyclerView.Adapter mAdapter;
     private RecyclerView.LayoutManager mLayoutManager;
 
-    private ArrayList<String> contacts;
+    private ArrayList<EmailContact> contacts;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -52,7 +54,12 @@ public class MeetingsActivity extends AppCompatActivity implements
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
-        contacts = getIntent().getStringArrayListExtra("contacts");
+        Serializable s = getIntent().getSerializableExtra("contacts");
+        if (s != null) {
+            contacts = (ArrayList<EmailContact>) s;
+        } else {
+            contacts = new ArrayList<>();
+        }
 
         Server.init(getApplicationContext());
 
@@ -61,7 +68,7 @@ public class MeetingsActivity extends AppCompatActivity implements
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(getApplicationContext(), CreateMeetingActivity.class);
-                intent.putStringArrayListExtra("contacts", contacts);
+                intent.putExtra("contacts", contacts);
 
                 startActivity(intent);
             }

@@ -26,10 +26,12 @@ import com.google.api.client.json.jackson2.JacksonFactory;
 import com.google.api.services.calendar.CalendarScopes;
 import com.google.api.services.people.v1.People;
 import com.google.api.services.people.v1.PeopleScopes;
+import com.google.api.services.people.v1.model.EmailAddress;
 import com.google.api.services.people.v1.model.ListConnectionsResponse;
 import com.google.api.services.people.v1.model.Name;
 import com.google.api.services.people.v1.model.Person;
 import com.utaustin.freely.R;
+import com.utaustin.freely.data.EmailContact;
 import com.utaustin.freely.data.UserData;
 
 import java.io.IOException;
@@ -47,7 +49,7 @@ public class LoginActivity extends AppCompatActivity implements
     private static final String serverClientSecret
             = "qinfghlkr3PpzkhqGJkkwvFY";
 
-    private ArrayList<String> contacts;
+    private ArrayList<EmailContact> contacts;
     private GoogleApiClient mGoogleApiClient;
 
     @Override
@@ -162,7 +164,7 @@ public class LoginActivity extends AppCompatActivity implements
 
             // Go to MeetingsActivity
             Intent intent = new Intent(this, MeetingsActivity.class);
-            intent.putStringArrayListExtra("contacts", contacts);
+            intent.putExtra("contacts", contacts);
             startActivity(intent);
             finish();
         } else {
@@ -196,40 +198,67 @@ public class LoginActivity extends AppCompatActivity implements
                     .build();
 
             try {
-                ListConnectionsResponse response = peopleService.people().connections().list("people/me").execute();
+                ListConnectionsResponse response = peopleService.people().connections().list("people/me")
+                        .setRequestMaskIncludeField("person.names,person.emailAddresses,person.phoneNumbers")
+                        .execute();
                 List<Person> connections = response.getConnections();
 
-                List<String> names = new ArrayList<>();
+                List<EmailContact> contacts = new ArrayList<>();
 
                 if (connections == null) {
                     Log.d("contacts", "No contacts found.");
-                    return names.toString();
+                    return contacts.toString();
                 }
 
                 for (Person p : connections) {
                     if (p == null) continue;
                     if (p.getNames() == null) {
-                        // This person has no names for some reason, want to avoid the NPE
+                        Log.d("infoCheck", "no info");
+                        // This person has no name for some reason, don't need to add it
                         continue;
                     }
 
-                    for (Name name : p.getNames()) {
-                        names.add(name.getDisplayName());
+                    String name = "";
+                    String email = "";
+
+                    for (Name n : p.getNames()) {
+                        name = n.getDisplayName();
                     }
+
+                    // Only get if not null
+                    if (p.getEmailAddresses() != null) {
+                        for (EmailAddress emailAddress : p.getEmailAddresses()) {
+                            email = emailAddress.getValue();
+                        }
+                    }
+
+                    EmailContact contact = new EmailContact(name, email);
+                    contacts.add(contact);
                 }
 
-                Log.d("contacts", names.toString());
-                return names.toString();
+                Log.d("contacts", contacts.toString());
+                return contacts.toString();
             } catch (IOException e) {
                 Log.d("contacts", "error");
-                return "Bad";
+                return "Something went wrong.";
             }
         }
 
         @Override
         protected void onPostExecute(String result) {
-            List<String> foundNames = Arrays.asList(result.split("\\s*,\\s*"));
-            contacts.addAll(foundNames);
+            // result is of the form:
+            // name email, name email, ...
+            // make it a list of [name email, name email, ...]
+            List<String> foundContacts = Arrays.asList(result.split("\\s*,\\s*"));
+
+            for (String s : foundContacts) {
+                int lastSpace = s.lastIndexOf(" ") + 1;
+                String name = s.substring(0, lastSpace);
+                String email = s.substring(lastSpace);
+
+                contacts.add(new EmailContact(name, email));
+            }
+
             Log.d("DONE", contacts.toString());
         }
     }
