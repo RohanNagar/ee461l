@@ -2,6 +2,7 @@ package com.utaustin.freely;
 
 import android.content.Context;
 import android.net.Uri;
+import android.util.Log;
 
 import com.android.volley.AuthFailureError;
 import com.android.volley.Request;
@@ -77,9 +78,15 @@ public class Server {
 
         for(int i = 0; i<emails.size(); i++){
             emailsFormatted += "\"" + emails.get(i) + "\"";
+
+            if(i+1<emails.size()){
+                emailsFormatted+=",";
+            }
         }
 
         emailsFormatted += "]";
+
+        Log.d("freely", emailsFormatted);
 
         params.put("emails", emailsFormatted);
         params.put("group_name", groupName);
