@@ -11,6 +11,7 @@ import android.view.MenuItem;
 
 import com.utaustin.freely.R;
 import com.utaustin.freely.adapters.ChoosePeopleAdapter;
+import com.utaustin.freely.data.EmailContact;
 
 import java.util.ArrayList;
 
@@ -19,7 +20,7 @@ public class CreateMeetingActivity extends AppCompatActivity {
     private RecyclerView mRecyclerView;
     private ChoosePeopleAdapter mAdapter;
     private RecyclerView.LayoutManager mLayoutManager;
-    private ArrayList<String> names;
+    private ArrayList<EmailContact> emails;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -41,13 +42,13 @@ public class CreateMeetingActivity extends AppCompatActivity {
         mRecyclerView.setLayoutManager(mLayoutManager);
 
         // specify an adapter (see also next example)
-        names = new ArrayList<>();
+        emails = new ArrayList<>();
 
         for(int i = 0; i<10; i++){
-            names.add("Meiru Che " + i);
+            emails.add(new EmailContact("Meiru Che " + i, "asharm95@gmail.com"));
         }
 
-        mAdapter = new ChoosePeopleAdapter(names);
+        mAdapter = new ChoosePeopleAdapter(emails);
         mRecyclerView.setAdapter(mAdapter);
     }
 
@@ -68,15 +69,20 @@ public class CreateMeetingActivity extends AppCompatActivity {
                 Bundle bundle = new Bundle();
 
                 ArrayList<String> checkedNames = new ArrayList<String>();
-                for(int i = 0; i < names.size(); i++) {
+                ArrayList<String> checkedEmails = new ArrayList<>();
+
+                for(int i = 0; i < emails.size(); i++) {
                     if(mAdapter.isChecked(i)) {
-                        checkedNames.add(names.get(i));
+                        checkedNames.add(emails.get(i).getName());
+                        checkedEmails.add(emails.get(i).getEmail());
                     }
                 }
 
-
                 bundle.putStringArrayList("names", checkedNames);
-                intent.putExtra("names", bundle);
+                bundle.putStringArrayList("emails", checkedEmails);
+
+                intent.putExtra("contacts_bundle", bundle);
+
                 startActivity(intent);
                 return true;
             case android.R.id.home:

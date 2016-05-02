@@ -136,6 +136,10 @@ public class LoginActivity extends AppCompatActivity implements
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
 
+        if(data != null){
+            Log.d("kickit", data.getDataString());
+        }
+
         // Result returned from launching the Intent from GoogleSignInApi.getSignInIntent(...);
         if (requestCode == RC_SIGN_IN) {
             GoogleSignInResult result = Auth.GoogleSignInApi.getSignInResultFromIntent(data);
@@ -148,13 +152,6 @@ public class LoginActivity extends AppCompatActivity implements
         if (result.isSuccess()) {
             // Signed in successfully
             GoogleSignInAccount acct = result.getSignInAccount();
-            Log.d("signIn", "name:" + acct.getDisplayName());
-
-            // Get auth code
-            String authCode = acct.getServerAuthCode();
-            Log.d("signIn", "authCode:" + authCode);
-            // TODO: send auth code to backend
-
             /* STILL NEED TO TEST THIS CODE */
             // Get accessToken
 //            String accessToken = "";

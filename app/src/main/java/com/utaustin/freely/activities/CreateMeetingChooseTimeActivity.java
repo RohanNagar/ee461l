@@ -6,6 +6,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
@@ -19,14 +20,28 @@ import com.utaustin.freely.fragments.EndTimePickerFragment;
 import com.utaustin.freely.fragments.StartDatePickerFragment;
 import com.utaustin.freely.fragments.StartTimePickerFragment;
 
+import java.util.ArrayList;
+
 public class CreateMeetingChooseTimeActivity extends AppCompatActivity {
 
-    EditText nameText;
-    Button beginDatePickerButton, beginTimePickerButton, endDatePickerButton, endTimePickerButton;
+    private EditText nameText;
+    private Button beginDatePickerButton, beginTimePickerButton, endDatePickerButton, endTimePickerButton;
+
+    private ArrayList<String> emails;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         Intent intent = getIntent();
+        Bundle passedBundle = intent.getBundleExtra("contacts_bundle");
+
+        if(passedBundle != null){
+            emails = passedBundle.getStringArrayList("emails");
+
+            if(emails != null){
+                Log.d("freely", emails.toString());
+            }
+        }
+
 //        ArrayList<String> checked = intent.getBundleExtra("names").getStringArrayList("names");
 //        for(int i = 0; i < checked.size(); i++) {
 //            Log.d("Checked names: ", checked.get(i));

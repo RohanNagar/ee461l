@@ -8,11 +8,12 @@ import android.widget.CheckBox;
 import android.widget.TextView;
 
 import com.utaustin.freely.R;
+import com.utaustin.freely.data.EmailContact;
 
 import java.util.ArrayList;
 
 public class ChoosePeopleAdapter extends RecyclerView.Adapter<ChoosePeopleAdapter.ViewHolder> {
-    private ArrayList<String> mDataset;
+    private ArrayList<EmailContact> mDataset;
     private ArrayList<Boolean> checks;
 
     // Provide a reference to the views for each data item
@@ -31,7 +32,7 @@ public class ChoosePeopleAdapter extends RecyclerView.Adapter<ChoosePeopleAdapte
     }
 
     // Provide a suitable constructor (depends on the kind of dataset)
-    public ChoosePeopleAdapter(ArrayList<String> myDataset) {
+    public ChoosePeopleAdapter(ArrayList<EmailContact> myDataset) {
         mDataset = myDataset;
         checks = new ArrayList<Boolean>();
         for(int i = 0;i<mDataset.size();i++){
@@ -57,7 +58,7 @@ public class ChoosePeopleAdapter extends RecyclerView.Adapter<ChoosePeopleAdapte
     public void onBindViewHolder(final ViewHolder holder, final int position) {
         // - get element from your dataset at this position
         // - replace the contents of the view with that element
-        holder.mTextView.setText(mDataset.get(position));
+        holder.mTextView.setText(mDataset.get(position).getName());
 
         holder.cb.setChecked(checks.get(position));
 

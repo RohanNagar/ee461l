@@ -5,7 +5,7 @@ public class UserData {
     private static String name;
     private static String authCode;
 
-    public String getAuthCode() {
+    public static String getAuthCode() {
         return authCode;
     }
 

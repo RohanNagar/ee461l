@@ -9,6 +9,7 @@ import com.android.volley.RequestQueue;
 import com.android.volley.Response;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
+import com.utaustin.freely.data.UserData;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -68,7 +69,7 @@ public class Server {
         queue.add(sr);
     }
 
-    public static void createMeeting(ArrayList<String> emails, String groupName, String gcmToken, String calendarToken, String beginTime, String endTime, int duration, Response.Listener<String> responseListener, Response.ErrorListener errorListener) {
+    public static void createMeeting(ArrayList<String> emails, String groupName, String beginTime, String endTime, int duration, Response.Listener<String> responseListener, Response.ErrorListener errorListener) {
         Map<String, String> params = new HashMap<>();
         String emailsFormatted = "[";
 
@@ -80,11 +81,9 @@ public class Server {
 
         params.put("emails", emailsFormatted);
         params.put("group_name", groupName);
-        params.put("gcm", gcmToken);
-        params.put("calendar_token", calendarToken);
+        params.put("calendar_auth", UserData.getAuthCode());
         params.put("begin_time", beginTime);
         params.put("end_time", endTime);
-        params.put("duration", Integer.toString(duration));
 
         Server.post("/meeting", params, responseListener, errorListener);
     }
