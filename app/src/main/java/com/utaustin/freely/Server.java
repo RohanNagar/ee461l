@@ -73,6 +73,8 @@ public class Server {
         Map<String, String> params = new HashMap<>();
         String emailsFormatted = "[";
 
+        emails.add(0, UserData.getEmail());
+
         for(int i = 0; i<emails.size(); i++){
             emailsFormatted += "\"" + emails.get(i) + "\"";
         }

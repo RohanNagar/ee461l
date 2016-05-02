@@ -15,7 +15,10 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 
+import com.android.volley.Response;
+import com.android.volley.VolleyError;
 import com.utaustin.freely.R;
+import com.utaustin.freely.Server;
 import com.utaustin.freely.fragments.EndDatePickerFragment;
 import com.utaustin.freely.fragments.EndTimePickerFragment;
 import com.utaustin.freely.fragments.StartDatePickerFragment;
@@ -56,7 +59,6 @@ public class CreateMeetingChooseTimeActivity extends AppCompatActivity {
         beginTimeTextView = (TextView) findViewById(R.id.activity_create_meeting_start_time_text_view);
         endDateTextView = (TextView) findViewById(R.id.activity_create_meeting_end_date_text_view);
         endTimeTextView = (TextView) findViewById(R.id.activity_create_meeting_end_time_text_view);
-
 
         final FragmentManager fragmentManager = getFragmentManager();
 
@@ -126,12 +128,50 @@ public class CreateMeetingChooseTimeActivity extends AppCompatActivity {
 
     public void createMeeting(){
         String groupName = nameText.getText().toString();
+        String beginTime;
+        String endTime;
 
         if(groupName.length() == 0){
             return;
         }
 
+        if(!startDateTextView.getText().toString().equals("")){
+            beginTime = startDateTextView.getText().toString();
+        }else{
+            return;
+        }
 
+        if(!endDateTextView.getText().toString().equals("")){
+            endTime = endDateTextView.getText().toString();
+        }else{
+            return;
+        }
+
+        if(!beginTimeTextView.getText().toString().equals("")){
+            beginTime+=" "+beginTimeTextView.getText().toString();
+        }else{
+            return;
+        }
+
+        if(!endTimeTextView.getText().toString().equals("")){
+            endTime+=" "+endTimeTextView.getText().toString();
+        }else{
+            return;
+        }
+
+        Server.createMeeting(emails, groupName, beginTime, endTime, new Response.Listener<String>() {
+            @Override
+            public void onResponse(String response) {
+                Log.d("freely", response);
+            }
+        }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+                Log.d("freely", error.toString());
+            }
+        });
+
+        Log.d("freely", "begin: "+beginTime+", end: "+endTime);
     }
 
     public void setBeginDate(int year, int month, int day){

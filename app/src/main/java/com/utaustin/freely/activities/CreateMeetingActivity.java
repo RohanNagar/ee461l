@@ -44,9 +44,15 @@ public class CreateMeetingActivity extends AppCompatActivity {
         // specify an adapter (see also next example)
         emails = new ArrayList<>();
 
-        for(int i = 0; i<10; i++){
-            emails.add(new EmailContact("Meiru Che " + i, "asharm95@gmail.com"));
-        }
+        //vijaymanohar4@gmail.com
+        //chindianteh@gmail.com
+
+        emails.add(new EmailContact("Vijay Manhor", "vijaymanohar4@gmail.com"));
+        emails.add(new EmailContact("Arjun Teh", "chindianteh@gmail.com"));
+
+//        for(int i = 0; i<10; i++){
+//            emails.add(new EmailContact("Meiru Che " + i, "asharm95@gmail.com"));
+//        }
 
         mAdapter = new ChoosePeopleAdapter(emails);
         mRecyclerView.setAdapter(mAdapter);
@@ -79,7 +85,7 @@ public class CreateMeetingActivity extends AppCompatActivity {
                 }
 
                 //need at least 2 people for this app to work
-                if(checkedEmails.size() < 2){
+                if(checkedEmails.size() < 1){
                     return true;
                 }
 
