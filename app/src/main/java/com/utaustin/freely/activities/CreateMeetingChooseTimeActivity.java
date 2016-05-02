@@ -13,6 +13,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.TextView;
 
 import com.utaustin.freely.R;
 import com.utaustin.freely.fragments.EndDatePickerFragment;
@@ -36,16 +37,7 @@ public class CreateMeetingChooseTimeActivity extends AppCompatActivity {
 
         if(passedBundle != null){
             emails = passedBundle.getStringArrayList("emails");
-
-            if(emails != null){
-                Log.d("freely", emails.toString());
-            }
         }
-
-//        ArrayList<String> checked = intent.getBundleExtra("names").getStringArrayList("names");
-//        for(int i = 0; i < checked.size(); i++) {
-//            Log.d("Checked names: ", checked.get(i));
-//        }
 
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_create_meeting_choose_time);
@@ -125,4 +117,19 @@ public class CreateMeetingChooseTimeActivity extends AppCompatActivity {
                 return super.onOptionsItemSelected(item);
         }
     }
+
+    public void setBeginDate(int year, int month, int day){
+        TextView startDateTextView = (TextView) findViewById(R.id.activity_create_meeting_date_text_view);
+
+        String date = (month+1) + "/" + day + "/" + year;
+        startDateTextView.setText(date);
+    }
+
+    public void setEndDate(int year, int month, int day){
+        TextView startDateTextView = (TextView) findViewById(R.id.activity_create_meeting_end_date_text_view);
+
+        String date = (month+1) + "/" + day + "/" + year;
+        startDateTextView.setText(date);
+    }
+
 }

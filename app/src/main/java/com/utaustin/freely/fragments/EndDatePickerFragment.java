@@ -32,9 +32,9 @@ public class EndDatePickerFragment extends DialogFragment
 
 
     public void onDateSet(DatePicker view, int year, int month, int day) {
-        TextView parentView = (TextView) getActivity().findViewById(R.id.activity_create_meeting_end_date_text_view);
-        String date = (month+1) + " " + day + ", " + year;
-        parentView.setText(date);
+        CreateMeetingChooseTimeActivity activity = (CreateMeetingChooseTimeActivity) getActivity();
+
+        activity.setEndDate(year, month, day);
     }
 
 }
