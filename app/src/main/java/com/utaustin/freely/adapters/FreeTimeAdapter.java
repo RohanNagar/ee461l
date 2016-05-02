@@ -16,7 +16,7 @@ import com.utaustin.freely.data.SessionData;
 import java.util.ArrayList;
 
 public class FreeTimeAdapter extends RecyclerView.Adapter<FreeTimeAdapter.ViewHolder> {
-    private ArrayList<Boolean> mDataset;
+    private ArrayList<String> mDataset;
     private Context context;
 
     // Provide a reference to the views for each data item
@@ -28,12 +28,12 @@ public class FreeTimeAdapter extends RecyclerView.Adapter<FreeTimeAdapter.ViewHo
 
         public ViewHolder(View v) {
             super(v);
-            mTextView = (TextView) v.findViewById(R.id.row_meetings_name_textview);
+            mTextView = (TextView) v.findViewById(R.id.row_free_time_text);
         }
     }
 
     // Provide a suitable constructor (depends on the kind of dataset)
-    public FreeTimeAdapter(ArrayList<Boolean> myDataset, Context context) {
+    public FreeTimeAdapter(ArrayList<String> myDataset, Context context) {
         mDataset = myDataset;
         this.context = context;
     }
@@ -43,8 +43,7 @@ public class FreeTimeAdapter extends RecyclerView.Adapter<FreeTimeAdapter.ViewHo
     public FreeTimeAdapter.ViewHolder onCreateViewHolder(ViewGroup parent,
                                                          int viewType) {
         // create a new view
-        View v = LayoutInflater.from(parent.getContext())
-                .inflate(R.layout.row_meetings, parent, false);
+        View v = LayoutInflater.from(parent.getContext()).inflate(R.layout.row_free_time, parent, false);
         // set the view's size, margins, paddings and layout parameters
 
         ViewHolder vh = new ViewHolder(v);
@@ -54,10 +53,7 @@ public class FreeTimeAdapter extends RecyclerView.Adapter<FreeTimeAdapter.ViewHo
     // Replace the contents of a view (invoked by the layout manager)
     @Override
     public void onBindViewHolder(ViewHolder holder, final int position) {
-        // - get element from your dataset at this position
-        // - replace the contents of the view with that element
-
-//        holder.mTextView.setText(mDataset.get(position).getName());
+        holder.mTextView.setText(mDataset.get(position));
     }
 
     // Return the size of your dataset (invoked by the layout manager)

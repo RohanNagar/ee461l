@@ -113,10 +113,10 @@ public class Server {
         Server.get("/meetings", params, responseListener, errorListener);
     }
 
-    public static void getFreeTimes(String sessionId, Response.Listener<String> responseListener, Response.ErrorListener errorListener){
+    public static void getFreeTimes(int sessionId, Response.Listener<String> responseListener, Response.ErrorListener errorListener){
         Map<String, String> params = new HashMap<>();
 
-        params.put("session_id", sessionId);
+        params.put("session_id", Integer.toString(sessionId));
 
         Server.get("/free-times", params, responseListener, errorListener);
     }
