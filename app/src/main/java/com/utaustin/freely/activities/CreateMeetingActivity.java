@@ -21,6 +21,7 @@ public class CreateMeetingActivity extends AppCompatActivity {
     private ChoosePeopleAdapter mAdapter;
     private RecyclerView.LayoutManager mLayoutManager;
     private ArrayList<EmailContact> emails;
+    private ArrayList<String> contacts; // unused right now, still using emails
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -43,15 +44,44 @@ public class CreateMeetingActivity extends AppCompatActivity {
 
         // specify an adapter (see also next example)
         emails = new ArrayList<>();
-
-        //vijaymanohar4@gmail.com
-        //chindianteh@gmail.com
-
         emails.add(new EmailContact("Vijay Manhor", "vijaymanohar4@gmail.com"));
         emails.add(new EmailContact("Arjun Teh", "chindianteh@gmail.com"));
 
 //        for(int i = 0; i<10; i++){
 //            emails.add(new EmailContact("Meiru Che " + i, "asharm95@gmail.com"));
+//        }
+
+        /* PART OF GOOGLE CONTACTS */
+        contacts = getIntent().getStringArrayListExtra("contacts");
+        // This gets contacts from the user's phone. Commented out
+        // because we're trying to get contacts from Google
+//        Cursor contacts = getContentResolver().query(ContactsContract.Contacts.CONTENT_URI,
+//                null, null, null, null);
+//        if (contacts != null && contacts.getCount() > 0) {
+//            while (contacts.moveToNext()) {
+//                String id = contacts.getString(contacts.getColumnIndex(ContactsContract.Contacts._ID));
+//                String name = contacts.getString(contacts.getColumnIndex(ContactsContract.Contacts.DISPLAY_NAME));
+//                contacts.add(name);
+//
+////                // Now we need to get email address
+////                Cursor emails = getContentResolver().query(
+////                        ContactsContract.CommonDataKinds.Email.CONTENT_URI,
+////                        null,
+////                        ContactsContract.CommonDataKinds.Email.CONTACT_ID + " = ?",
+////                        new String[]{id}, null);
+////
+////                if (emails != null) {
+////                    while (emails.moveToNext()) {
+////                        String email = emails.getString(emails.getColumnIndex(ContactsContract.CommonDataKinds.Email.DATA));
+////                        emailMap.put(name, email);
+////                    }
+////
+////                    emails.close();
+////                }
+//
+//            }
+//
+//            contacts.close();
 //        }
 
         mAdapter = new ChoosePeopleAdapter(emails);
@@ -74,7 +104,7 @@ public class CreateMeetingActivity extends AppCompatActivity {
                 Intent intent = new Intent(this, CreateMeetingChooseTimeActivity.class);
                 Bundle bundle = new Bundle();
 
-                ArrayList<String> checkedNames = new ArrayList<String>();
+                ArrayList<String> checkedNames = new ArrayList<>();
                 ArrayList<String> checkedEmails = new ArrayList<>();
 
                 for(int i = 0; i < emails.size(); i++) {

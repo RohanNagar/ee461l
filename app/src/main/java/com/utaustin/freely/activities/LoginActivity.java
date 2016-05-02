@@ -1,6 +1,7 @@
 package com.utaustin.freely.activities;
 
 import android.content.Intent;
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
@@ -17,29 +18,22 @@ import com.google.android.gms.common.api.GoogleApiClient;
 import com.google.android.gms.common.api.OptionalPendingResult;
 import com.google.android.gms.common.api.ResultCallback;
 import com.google.android.gms.common.api.Scope;
-import com.google.api.client.auth.oauth2.TokenResponse;
 import com.google.api.client.googleapis.auth.oauth2.GoogleAuthorizationCodeTokenRequest;
-import com.google.api.client.googleapis.auth.oauth2.GoogleClientSecrets;
 import com.google.api.client.googleapis.auth.oauth2.GoogleCredential;
-import com.google.api.client.googleapis.auth.oauth2.GoogleIdToken;
-import com.google.api.client.googleapis.auth.oauth2.GoogleIdTokenVerifier;
 import com.google.api.client.googleapis.auth.oauth2.GoogleTokenResponse;
-import com.google.api.client.http.HttpTransport;
 import com.google.api.client.http.javanet.NetHttpTransport;
-import com.google.api.client.json.JsonFactory;
 import com.google.api.client.json.jackson2.JacksonFactory;
 import com.google.api.services.calendar.CalendarScopes;
 import com.google.api.services.people.v1.People;
 import com.google.api.services.people.v1.PeopleScopes;
 import com.google.api.services.people.v1.model.ListConnectionsResponse;
+import com.google.api.services.people.v1.model.Name;
 import com.google.api.services.people.v1.model.Person;
 import com.utaustin.freely.R;
 import com.utaustin.freely.data.UserData;
 
-import java.io.FileNotFoundException;
-import java.io.FileReader;
 import java.io.IOException;
-import java.security.GeneralSecurityException;
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
@@ -53,6 +47,7 @@ public class LoginActivity extends AppCompatActivity implements
     private static final String serverClientSecret
             = "qinfghlkr3PpzkhqGJkkwvFY";
 
+    private ArrayList<String> contacts;
     private GoogleApiClient mGoogleApiClient;
 
     @Override
@@ -86,6 +81,8 @@ public class LoginActivity extends AppCompatActivity implements
         signInButton.setScopes(gso.getScopeArray());
 
         findViewById(R.id.sign_in_button).setOnClickListener(this);
+
+        contacts = new ArrayList<>();
     }
 
     @Override
@@ -148,35 +145,15 @@ public class LoginActivity extends AppCompatActivity implements
         if (result.isSuccess()) {
             // Signed in successfully
             GoogleSignInAccount acct = result.getSignInAccount();
-            /* STILL NEED TO TEST THIS CODE */
-            // Get accessToken
-//            String accessToken = "";
-//            try {
-//                GoogleTokenResponse response = new GoogleAuthorizationCodeTokenRequest(
-//                        new NetHttpTransport(), JacksonFactory.getDefaultInstance(),
-//                        "https://www.googleapis.com/oauth2/v4/token", serverClientId,
-//                        serverClientSecret, acct.getServerAuthCode(), "").execute();
-//                accessToken = response.getAccessToken();
-//            } catch (IOException e) {
-//                Log.d("auth", "error");
-//            }
-//
-//            // Get contacts
-//            GoogleCredential credential = new GoogleCredential.Builder()
-//                    .build().setAccessToken(accessToken);
-//
-//            People peopleService = new People.Builder(new NetHttpTransport(), JacksonFactory.getDefaultInstance(), credential)
-//                    .build();
-//
-//            List<Person> connections;
-//            try {
-//                ListConnectionsResponse response = peopleService.people().connections().list("people/me").execute();
-//                connections = response.getConnections();
-//                Log.d("contacts", connections.toString());
-//            } catch (IOException e) {
-//                Log.d("contacts", "error");
-//            }
-            /* END STILL NEED TO TEST THIS CODE */
+            Log.d("signIn", "name:" + acct.getDisplayName());
+
+            // Get auth code
+            String authCode = acct.getServerAuthCode();
+            Log.d("signIn", "authCode:" + authCode);
+            // TODO: send auth code to backend
+
+            // Get Google contacts asynchronously
+            new GoogleContactsClass().execute(authCode);
 
             // Set UserData
             UserData.setEmail(acct.getEmail());
@@ -185,11 +162,63 @@ public class LoginActivity extends AppCompatActivity implements
 
             // Go to MeetingsActivity
             Intent intent = new Intent(this, MeetingsActivity.class);
+            intent.putStringArrayListExtra("contacts", contacts);
             startActivity(intent);
             finish();
         } else {
             // Unsuccessful
             Log.d("signIn", "failure");
+        }
+    }
+
+    private class GoogleContactsClass extends AsyncTask<String, Void, String> {
+        @Override
+        protected String doInBackground(String... data) {
+            String authCode = data[0];
+
+            String accessToken;
+            try {
+                GoogleTokenResponse response = new GoogleAuthorizationCodeTokenRequest(
+                        new NetHttpTransport(), JacksonFactory.getDefaultInstance(),
+                        "https://www.googleapis.com/oauth2/v4/token", serverClientId,
+                        serverClientSecret, authCode, "").execute();
+                accessToken = response.getAccessToken();
+            } catch (IOException e) {
+                Log.d("auth", "error");
+                return "Bad";
+            }
+
+            // Get contacts
+            GoogleCredential credential = new GoogleCredential.Builder()
+                    .build().setAccessToken(accessToken);
+
+            People peopleService = new People.Builder(new NetHttpTransport(), JacksonFactory.getDefaultInstance(), credential)
+                    .build();
+
+            try {
+                ListConnectionsResponse response = peopleService.people().connections().list("people/me").execute();
+                List<Person> connections = response.getConnections();
+
+                List<String> names = new ArrayList<>();
+                for (Person p : connections) {
+                    for (Name name : p.getNames()) {
+                        names.add(name.getDisplayName());
+                    }
+                }
+
+                Log.d("contacts", names.toString());
+                return names.toString();
+            } catch (IOException e) {
+                Log.d("contacts", "error");
+                return "Bad";
+            }
+        }
+
+        @Override
+        protected void onPostExecute(String result) {
+            List<String> foundNames = Arrays.asList(result.split("\\s*,\\s*"));
+            contacts.addAll(foundNames);
+            Log.d("DONE", contacts.toString());
         }
     }
 }

@@ -43,12 +43,16 @@ public class MeetingsActivity extends AppCompatActivity implements
     private RecyclerView.Adapter mAdapter;
     private RecyclerView.LayoutManager mLayoutManager;
 
+    private ArrayList<String> contacts;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_meetings);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
+
+        contacts = getIntent().getStringArrayListExtra("contacts");
 
         Server.init(getApplicationContext());
 
@@ -57,6 +61,7 @@ public class MeetingsActivity extends AppCompatActivity implements
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(getApplicationContext(), CreateMeetingActivity.class);
+                intent.putStringArrayListExtra("contacts", contacts);
 
                 startActivity(intent);
             }
