@@ -200,7 +200,19 @@ public class LoginActivity extends AppCompatActivity implements
                 List<Person> connections = response.getConnections();
 
                 List<String> names = new ArrayList<>();
+
+                if (connections == null) {
+                    Log.d("contacts", "No contacts found.");
+                    return names.toString();
+                }
+
                 for (Person p : connections) {
+                    if (p == null) continue;
+                    if (p.getNames() == null) {
+                        // This person has no names for some reason, want to avoid the NPE
+                        continue;
+                    }
+
                     for (Name name : p.getNames()) {
                         names.add(name.getDisplayName());
                     }
