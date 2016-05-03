@@ -233,8 +233,14 @@ public class LoginActivity extends AppCompatActivity implements
                     }
 
                     EmailContact contact = new EmailContact(name, email);
-                    contacts.add(contact);
+
+                    if(email != null && !email.equals("")){
+                        contacts.add(contact);
+                    }
+
                 }
+
+                UserData.setContacts(contacts);
 
                 Log.d("contacts", contacts.toString());
                 return contacts.toString();

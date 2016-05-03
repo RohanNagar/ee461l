@@ -1,9 +1,15 @@
 package com.utaustin.freely.data;
 
+import android.util.Log;
+
+import java.util.ArrayList;
+import java.util.List;
+
 public class UserData {
     private static String email;
     private static String name;
     private static String authCode;
+    private static List<EmailContact> contacts = new ArrayList<>();
 
     public static String getAuthCode() {
         return authCode;
@@ -27,5 +33,13 @@ public class UserData {
 
     public static void setAuthCode(String authCode) {
         UserData.authCode = authCode;
+    }
+
+    public static void setContacts(List<EmailContact> c){
+        contacts = c;
+    }
+
+    public static List<EmailContact> getContacts(){
+        return contacts;
     }
 }

@@ -5,6 +5,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
@@ -12,9 +13,11 @@ import android.view.MenuItem;
 import com.utaustin.freely.R;
 import com.utaustin.freely.adapters.ChoosePeopleAdapter;
 import com.utaustin.freely.data.EmailContact;
+import com.utaustin.freely.data.UserData;
 
 import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.List;
 
 public class CreateMeetingActivity extends AppCompatActivity {
 
@@ -45,20 +48,23 @@ public class CreateMeetingActivity extends AppCompatActivity {
 
         // specify an adapter (see also next example)
         emails = new ArrayList<>();
-        emails.add(new EmailContact("Vijay Manhor", "vijaymanohar4@gmail.com"));
-        emails.add(new EmailContact("Arjun Teh", "chindianteh@gmail.com"));
+//        emails.add(new EmailContact("Vijay Manhor", "vijaymanohar4@gmail.com"));
+//        emails.add(new EmailContact("Arjun Teh", "chindianteh@gmail.com"));
 
-//        for(int i = 0; i<10; i++){
-//            emails.add(new EmailContact("Meiru Che " + i, "asharm95@gmail.com"));
-//        }
+        List<EmailContact> emailTrans = UserData.getContacts();
+
+
+        for(int i = 0;i<emailTrans.size();i++){
+            emails.add(new EmailContact(emailTrans.get(i).getName(), emailTrans.get(i).getEmail()));
+        }
 
         /* PART OF GOOGLE CONTACTS */
-        Serializable s = getIntent().getSerializableExtra("contacts");
-        if (s != null) {
-            contacts = (ArrayList<EmailContact>) s;
-        } else {
-            contacts = new ArrayList<>();
-        }
+//        Serializable s = getIntent().getSerializableExtra("contacts");
+//        if (s != null) {
+//            contacts = (ArrayList<EmailContact>) s;
+//        } else {
+//            contacts = new ArrayList<>();
+//        }
         // This gets contacts from the user's phone. Commented out
         // because we're trying to get contacts from Google
 //        Cursor contacts = getContentResolver().query(ContactsContract.Contacts.CONTENT_URI,

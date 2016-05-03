@@ -45,6 +45,8 @@ public class CreateMeetingChooseTimeActivity extends AppCompatActivity {
             emails = passedBundle.getStringArrayList("emails");
         }
 
+        Log.d("freely", emails.toString());
+
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_create_meeting_choose_time);
 
