@@ -25,7 +25,6 @@ public class CreateMeetingActivity extends AppCompatActivity {
     private ChoosePeopleAdapter mAdapter;
     private RecyclerView.LayoutManager mLayoutManager;
     private ArrayList<EmailContact> emails;
-    private ArrayList<EmailContact> contacts; // unused right now, still using emails
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -48,8 +47,6 @@ public class CreateMeetingActivity extends AppCompatActivity {
 
         // specify an adapter (see also next example)
         emails = new ArrayList<>();
-//        emails.add(new EmailContact("Vijay Manhor", "vijaymanohar4@gmail.com"));
-//        emails.add(new EmailContact("Arjun Teh", "chindianteh@gmail.com"));
 
         List<EmailContact> emailTrans = UserData.getContacts();
 
@@ -57,44 +54,6 @@ public class CreateMeetingActivity extends AppCompatActivity {
         for(int i = 0;i<emailTrans.size();i++){
             emails.add(new EmailContact(emailTrans.get(i).getName(), emailTrans.get(i).getEmail()));
         }
-
-        /* PART OF GOOGLE CONTACTS */
-//        Serializable s = getIntent().getSerializableExtra("contacts");
-//        if (s != null) {
-//            contacts = (ArrayList<EmailContact>) s;
-//        } else {
-//            contacts = new ArrayList<>();
-//        }
-        // This gets contacts from the user's phone. Commented out
-        // because we're trying to get contacts from Google
-//        Cursor contacts = getContentResolver().query(ContactsContract.Contacts.CONTENT_URI,
-//                null, null, null, null);
-//        if (contacts != null && contacts.getCount() > 0) {
-//            while (contacts.moveToNext()) {
-//                String id = contacts.getString(contacts.getColumnIndex(ContactsContract.Contacts._ID));
-//                String name = contacts.getString(contacts.getColumnIndex(ContactsContract.Contacts.DISPLAY_NAME));
-//                contacts.add(name);
-//
-////                // Now we need to get email address
-////                Cursor emails = getContentResolver().query(
-////                        ContactsContract.CommonDataKinds.Email.CONTENT_URI,
-////                        null,
-////                        ContactsContract.CommonDataKinds.Email.CONTACT_ID + " = ?",
-////                        new String[]{id}, null);
-////
-////                if (emails != null) {
-////                    while (emails.moveToNext()) {
-////                        String email = emails.getString(emails.getColumnIndex(ContactsContract.CommonDataKinds.Email.DATA));
-////                        emailMap.put(name, email);
-////                    }
-////
-////                    emails.close();
-////                }
-//
-//            }
-//
-//            contacts.close();
-//        }
 
         mAdapter = new ChoosePeopleAdapter(emails);
         mRecyclerView.setAdapter(mAdapter);
